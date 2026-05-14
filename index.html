@@ -1897,6 +1897,21 @@
         min-height: 300px;
         /* Full view height for mobile */
       }
+      
+      /* Use dragonball2.jpg for mobile */
+      .site-footer {
+        background-image: linear-gradient(to bottom, rgba(26, 15, 0, 0.728) 0%, rgba(26, 15, 0, 1) 100%), url('./img/dragonball2.jpg') !important;
+        background-size: cover !important;
+        background-position: center bottom !important;
+      }
+    }
+
+    .site-footer {
+      background-image: linear-gradient(to bottom, rgba(26, 15, 0, 0.728) 0%, rgba(26, 15, 0, 1) 100%), url('./img/dbs.jpg');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      background-color: #1a0f00;
     }
 
     /* Text selection */
@@ -2508,8 +2523,7 @@
 
   <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
 
-  <footer
-    style="background-image: linear-gradient(to bottom, rgba(26, 15, 0, 0.728) 0%, rgba(26, 15, 0, 1) 100%), url('./img/dbs.jpg'); background-size: cover; background-position: center bottom; background-repeat: no-repeat;">
+  <footer class="site-footer">
     <div class="container-xl px-3 px-md-4">
       <div class="row g-4">
         <div class="col-12 col-md-5">
