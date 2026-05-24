@@ -2008,8 +2008,96 @@
       color: rgba(255, 248, 231, 0.5);
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       font-weight: 700;
+    }
+
+    /* ── NEXT EVENT TICKET BANNER ── */
+    .next-event-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: var(--dark);
+      border: 2px solid var(--orange);
+      border-left: 6px solid var(--orange);
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+    }
+
+    .next-event-banner-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .next-event-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      background: var(--orange);
+      color: #fff;
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+
+    .next-event-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .next-event-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--yellow);
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    .next-event-date {
+      font-size: 12px;
+      color: rgba(255, 248, 231, 0.55);
+      font-weight: 600;
+      letter-spacing: .5px;
+    }
+
+    .next-event-date i {
+      color: var(--orange-light);
+    }
+
+    .next-event-ticket-btn {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 19px;
+      letter-spacing: 1.5px;
+      padding: 10px 24px;
+      text-decoration: none;
+      border: 2px solid var(--orange);
+      white-space: nowrap;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+
+    .next-event-ticket-btn:hover {
+      background: var(--yellow);
+      color: var(--dark);
+      border-color: var(--yellow);
+    }
+
+    @media (max-width: 575px) {
+      .next-event-banner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .next-event-ticket-btn {
+        width: 100%;
+        text-align: center;
+      }
     }
 
     /* Cyberpunk List Rectangles Styling */
@@ -2766,6 +2854,20 @@
         </div>
 
         <div class="events-counter" id="events-count-text">10 Events</div>
+
+        <!-- ── NEXT UP TICKET BANNER ── -->
+        <div class="next-event-banner">
+          <div class="next-event-banner-left">
+            <span class="next-event-label">NEXT UP</span>
+            <div class="next-event-info">
+              <span class="next-event-name">Anime Night</span>
+              <span class="next-event-date"><i class="fa-regular fa-calendar-days"></i> MAY 28, 2026 &nbsp;·&nbsp; <i class="fa-solid fa-location-dot"></i> Kampala, Uganda</span>
+            </div>
+          </div>
+          <a href="https://www.quicket.co.ug" target="_blank" class="next-event-ticket-btn">
+            🎟 Buy Ticket Now
+          </a>
+        </div>
 
         <!-- Stylish Rectangles Events List -->
         <div class="event-list fade-in">
