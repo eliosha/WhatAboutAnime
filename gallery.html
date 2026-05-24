@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — What About Anime</title>
+  <link rel="icon" type="image/png" href="./img/logo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --orange: #E8420A;
+      --orange-light: #FF5722;
+      --orange-dark: #B83208;
+      --yellow: #F5C200;
+      --yellow-light: #FFD740;
+      --cream: #FFF8E7;
+      --cream-dark: #F5EDCF;
+      --dark: #1A0F00;
+      --dark-mid: #2D1A05;
+      --dark-card: #0a0603;
+      --text-body: #3D2008;
+      --white: #FFFFFF;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #060301;
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: var(--dark);
+      padding: 0 2rem;
+      height: 64px;
+      border-bottom: 2px solid var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: height .3s ease;
+    }
+
+    nav.scrolled {
+      height: 52px;
+      border-bottom-width: 2px;
+      transition: height .3s ease, border-bottom-width .3s ease;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo .logo-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: var(--cream-dark);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--yellow);
+    }
+
+    .nav-cta {
+      background: var(--dark);
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: 8px 18px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--yellow);
+      color: var(--dark);
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background-image: linear-gradient(to bottom, rgba(26, 15, 0, 0.85) 0%, rgba(6, 3, 1, 0.98) 100%), url('./img/dbs.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
+      background-color: #060301;
+      padding: 130px 1.5rem 90px;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to top, #060301 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .page-header-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 767px) {
+      .page-header {
+        padding: 100px 1.5rem 60px;
+      }
+    }
+
+    .page-tag {
+      display: inline-block;
+      background: rgba(245, 194, 0, 0.08);
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 10px rgba(245, 194, 0, 0.1);
+    }
+
+    .page-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(65px, 11vw, 130px);
+      line-height: 0.9;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      letter-spacing: 2px;
+    }
+
+    .page-title .accent {
+      color: var(--yellow);
+    }
+
+    .page-subtitle {
+      font-family: 'Nunito', sans-serif;
+      color: rgba(255, 248, 231, 0.7);
+      font-size: clamp(15px, 2vw, 20px);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── STRIPE ── */
+    .stripe-divider {
+      height: 2px;
+      background: var(--yellow);
+      box-shadow: 0 0 10px rgba(245, 194, 0, 0.35);
+      position: relative;
+      z-index: 3;
+    }
+
+    /* ── GALLERY WRAPPER ── */
+    .gallery-page {
+      background: #060301;
+      padding: 4rem 0 6rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    @media (max-width: 767px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-label-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(245, 194, 0, 0.25);
+    }
+
+    .section-label-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      white-space: nowrap;
+    }
+
+    .section-label-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: rgba(255, 248, 231, 0.2);
+      letter-spacing: 2px;
+    }
+
+    /* ── FILTER TABS ── */
+    .filter-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 248, 231, 0.12);
+      color: rgba(255, 248, 231, 0.45);
+      padding: 7px 18px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .filter-btn.active {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--yellow);
+    }
+
+    /* ── PHOTO GRID ── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 280px;
+      gap: 3px;
+    }
+
+    @media (max-width: 900px) {
+      .photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 240px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+      }
+    }
+
+    /* Span rules for visual variety */
+    .photo-item:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .photo-item:nth-child(5) {
+      grid-column: span 2;
+    }
+
+    .photo-item:nth-child(7) {
+      grid-row: span 2;
+    }
+
+    .photo-item:nth-child(10) {
+      grid-column: span 2;
+    }
+
+    .photo-item:nth-child(12) {
+      grid-row: span 2;
+    }
+
+    .photo-item:nth-child(15) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .photo-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--dark-card);
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 15, 0, 0.85) 0%, rgba(26, 15, 0, 0.1) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.25rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .photo-item:hover .photo-overlay {
+      opacity: 1;
+    }
+
+    .photo-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--yellow);
+      letter-spacing: 1px;
+      line-height: 1;
+      transform: translateY(12px);
+      transition: transform 0.3s ease;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .photo-item:hover .photo-label {
+      transform: translateY(0);
+    }
+
+    .photo-label-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: rgba(255, 248, 231, 0.55);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 3px;
+      transform: translateY(12px);
+      transition: transform 0.3s ease 0.05s;
+    }
+
+    .photo-item:hover .photo-label-sub {
+      transform: translateY(0);
+    }
+
+    /* expand icon */
+    .photo-expand {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 30px;
+      height: 30px;
+      background: var(--orange);
+      border: 1px solid var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--yellow);
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+
+    .photo-item:hover .photo-expand {
+      opacity: 1;
+    }
+
+    .photo-expand:hover {
+      transform: scale(1.15);
+    }
+
+    /* placeholder bg for images without src */
+    .photo-item .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: rgba(245, 194, 0, 0.12);
+      letter-spacing: 4px;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(26, 15, 0, 0.96);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      display: block;
+      border: 2px solid var(--orange);
+      box-shadow: 0 0 40px rgba(232, 66, 10, 0.25);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      background: var(--orange);
+      color: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .lightbox-close:hover {
+      background: var(--orange-dark);
+      color: #fff;
+      transform: scale(1.1) rotate(90deg);
+    }
+
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(26, 15, 0, 0.8);
+      border: 1px solid rgba(232, 66, 10, 0.4);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .lightbox-nav:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--yellow);
+    }
+
+    .lightbox-prev {
+      left: 1.5rem;
+    }
+
+    .lightbox-next {
+      right: 1.5rem;
+    }
+
+    .lightbox-caption {
+      margin-top: 0.75rem;
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--orange);
+      letter-spacing: 2px;
+    }
+
+    /* ── COUNT BAR ── */
+    .gallery-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .gallery-count {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: rgba(255, 248, 231, 0.3);
+      letter-spacing: 2px;
+    }
+
+    .gallery-count span {
+      color: var(--yellow);
+    }
+
+    /* ── FADE IN ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── VIEW MORE BUTTON ── */
+    .view-more-btn {
+      background: var(--dark);
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      padding: 12px 36px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 19px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .view-more-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+      transition: left 0.4s ease;
+    }
+
+    .view-more-btn:hover::before {
+      left: 140%;
+    }
+
+    .view-more-btn:hover {
+      background: var(--orange);
+      color: var(--yellow);
+      transform: translateY(-2px);
+    }
+
+    .view-more-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background-image: linear-gradient(to bottom, rgba(26, 15, 0, 0.728) 0%, rgba(26, 15, 0, 1) 100%), url('./img/dbs.jpg');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      background-color: #1a0f00;
+      border-top: 3px solid var(--orange);
+      padding: 3rem 2rem 1.5rem;
+    }
+
+    .footer-logo-box {
+      display: inline-block;
+      background: var(--dark);
+      border: 1px solid var(--orange);
+      color: var(--orange);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      margin-bottom: .9rem;
+    }
+
+    .footer-brand-text {
+      font-size: 12px;
+      line-height: 1.7;
+      color: rgba(255, 248, 231, .4);
+      max-width: 260px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: .75rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .footer-col ul li a {
+      color: rgba(255, 248, 231, .4);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      transition: color .2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--yellow);
+    }
+
+    .footer-divider {
+      border-color: rgba(255, 248, 231, .08);
+      margin: 1.5rem 0 1rem;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255, 248, 231, .25);
+      font-weight: 600;
+    }
+
+    .footer-copy span {
+      color: var(--orange);
+    }
+
+    .social-link {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 248, 231, .14);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 248, 231, .38);
+      text-decoration: none;
+      font-size: 15px;
+      border-radius: 4px;
+      transition: border-color .2s, color .2s;
+    }
+
+    .social-link:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .social-link img {
+      width: 1.2em;
+      height: 1.2em;
+      object-fit: contain;
+      filter: grayscale(100%) opacity(0.38);
+      transition: filter .2s, opacity .2s;
+    }
+
+    .social-link:hover img {
+      filter: grayscale(0%) opacity(1);
+    }
+
+    /* ── MICRO-ANIMATIONS ── */
+
+    /* Nav link underline sweep */
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--yellow);
+      transition: width .25s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* Logo skew on hover */
+    .nav-logo .logo-box {
+      transition: transform .2s ease;
+    }
+
+    .nav-logo:hover .logo-box {
+      transform: skewX(-4deg) scale(1.05);
+    }
+
+    /* Button shimmer */
+    .nav-cta {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .18), transparent);
+      transition: left .4s ease;
+    }
+
+    .nav-cta:hover::before {
+      left: 140%;
+    }
+
+    /* Photo item stagger fade */
+    .photo-item {
+      animation: fadeUp .5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .photo-item:nth-child(1) {
+      animation-delay: .04s;
+    }
+
+    .photo-item:nth-child(2) {
+      animation-delay: .08s;
+    }
+
+    .photo-item:nth-child(3) {
+      animation-delay: .12s;
+    }
+
+    .photo-item:nth-child(4) {
+      animation-delay: .16s;
+    }
+
+    .photo-item:nth-child(5) {
+      animation-delay: .20s;
+    }
+
+    .photo-item:nth-child(6) {
+      animation-delay: .24s;
+    }
+
+    .photo-item:nth-child(7) {
+      animation-delay: .28s;
+    }
+
+    .photo-item:nth-child(8) {
+      animation-delay: .32s;
+    }
+
+    /* Photo item orange glow on hover */
+    .photo-item::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      z-index: -1;
+      background: var(--orange);
+      opacity: 0;
+      transition: opacity .25s ease;
+      filter: blur(12px);
+    }
+
+    .photo-item:hover::after {
+      opacity: .25;
+    }
+
+    /* Page header tag bounce in */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page-tag {
+      animation: slideDown .5s ease .2s both;
+    }
+
+    .page-title {
+      animation: slideDown .55s cubic-bezier(.22, 1, .36, 1) .3s both;
+    }
+
+    .page-subtitle {
+      animation: slideDown .55s ease .45s both;
+    }
+
+    /* Section label line draw */
+    .section-label-line {
+      animation: lineExpand .5s ease .1s both;
+      transform-origin: left;
+    }
+
+    @keyframes lineExpand {
+      from {
+        transform: scaleX(0);
+      }
+
+      to {
+        transform: scaleX(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="logo-box"><img src="./img/logo.png" alt="whatabout-logo" width="65px"></div>
+    </a>
+    <ul class="nav-links d-none d-lg-flex">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="index.html#podcast">Podcast</a></li>
+      <li><a href="index.html#content">Content</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+    </ul>
+    <!-- Mobile menu -->
+    <div class="d-lg-none d-flex align-items-center gap-3">
+      <button class="btn btn-sm" style="background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;"
+        type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">☰ Menu</button>
+      <a href="https://discord.com/invite/XXhMUw7Ay8" target="_blank" class="nav-cta">Join Us</a>
+    </div>
+    <a href="https://discord.com/invite/XXhMUw7Ay8" target="_blank" class="nav-cta d-none d-lg-inline-block">Join Us</a>
+  </nav>
+  <!-- Mobile dropdown -->
+  <div class="collapse" id="mobileMenu"
+    style="position:fixed;top:64px;left:0;right:0;z-index:199;background:var(--dark);border-bottom:2px solid var(--yellow);padding:1rem 1.5rem;">
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.75rem;">
+      <li><a href="events.html"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          onclick="document.getElementById('mobileMenu').classList.remove('show')">Events</a></li>
+      <li><a href="index.html#podcast"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          onclick="document.getElementById('mobileMenu').classList.remove('show')">Podcast</a></li>
+      <li><a href="index.html#content"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          onclick="document.getElementById('mobileMenu').classList.remove('show')">Content</a></li>
+      <li><a href="index.html#community"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          onclick="document.getElementById('mobileMenu').classList.remove('show')">Community</a></li>
+      <li><a href="index.html#about"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          onclick="document.getElementById('mobileMenu').classList.remove('show')">About</a></li>
+      <li><a href="gallery.html"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          onclick="document.getElementById('mobileMenu').classList.remove('show')">Gallery</a></li>
+    </ul>
+  </div>
+
+  <!-- ── PAGE HEADER ── -->
+  <header class="page-header">
+    <div class="page-header-inner">
+      <div class="page-tag">Previous Anime Nights</div>
+      <h1 class="page-title">PHOTO <span class="accent">GALLERY</span></h1>
+      <p class="page-subtitle">The moments, the memories, the madness — all right here.</p>
+    </div>
+  </header>
+
+  <div class="stripe-divider"></div>
+
+  <!-- ── GALLERY ── -->
+  <main class="gallery-page">
+    <div class="container">
+
+      <div class="section-label fade-up">
+        <div class="section-label-line"></div>
+        <span class="section-label-text">Photo Album</span>
+        <div class="section-label-line"></div>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="filter-row fade-up">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="anime-night">Anime Night</button>
+        <button class="filter-btn" data-filter="sports">Sports</button>
+        <button class="filter-btn" data-filter="otamatsuri">Otamatsuri</button>
+        <button class="filter-btn" data-filter="community">Community</button>
+      </div>
+
+      <div class="gallery-meta fade-up">
+        <div class="gallery-count"><span id="visibleCount">8</span> PHOTOS</div>
+      </div>
+        <!--New Photo 1: Anime Night-->
+      <div class="photo-grid fade-up" id="photoGrid">
+        <div class="photo-item" data-label="Anime Night" data-sub="Season 1" data-cat="anime-night"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/SS.png" alt="Anime Night"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">AN</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Anime Night</div>
+            <div class="photo-label-sub">Season 1</div>
+          </div>
+        </div>
+        <!--New Photo 2: Community-->
+        <div class="photo-item" data-label="Community" data-sub="The Squad" data-cat="community"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/s1-b.jpg" alt="Community"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">CM</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Community</div>
+            <div class="photo-label-sub">The Squad</div>
+          </div>
+        </div>
+        <!--New Photo 3: The Vibes-->
+        <div class="photo-item" data-label="The Vibes" data-sub="Season 1" data-cat="anime-night"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/s1-c.jpg" alt="The Vibes"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">VB</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">The Vibes</div>
+            <div class="photo-label-sub">Season 1</div>
+          </div>
+        </div>
+        <!--New Photo 4: Sports Day-->
+        <div class="photo-item" data-label="Sports Day" data-sub="Summer Sports" data-cat="sports"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/s2-a.jpg" alt="Sports Day"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">SP</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Sports Day</div>
+            <div class="photo-label-sub">Summer Sports</div>
+          </div>
+        </div>
+        <!--New Photo 5: Cosplay-->
+        <div class="photo-item" data-label="Cosplay" data-sub="Season 2" data-cat="anime-night"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/s2-b.jpg" alt="Cosplay"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">CL</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Cosplay</div>
+            <div class="photo-label-sub">Season 2</div>
+          </div>
+        </div>
+        <!--New Photo 6: Artist Alley-->
+        <div class="photo-item" data-label="Artist Alley" data-sub="Season 2" data-cat="community"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/s2-c.jpg" alt="Artist Alley"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">AA</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Artist Alley</div>
+            <div class="photo-label-sub">Season 2</div>
+          </div>
+        </div>
+        <!--New Photo 7: Otamatsuri-->
+        <div class="photo-item" data-label="Otamatsuri" data-sub="Festival" data-cat="otamatsuri"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/s3-a.jpg" alt="Otamatsuri"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">OT</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Otamatsuri</div>
+            <div class="photo-label-sub">Festival</div>
+          </div>
+        </div>
+        <!--New Photo 8: Nairobi-->
+        <div class="photo-item" data-label="Nairobi" data-sub="On Tour" data-cat="community"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/s3-b.jpg" alt="Nairobi"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">NR</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Nairobi</div>
+            <div class="photo-label-sub">On Tour</div>
+          </div>
+        </div>
+        <!-- New Photo 9: Gaming Tournament -->
+        <div class="photo-item" data-label="Gaming Tournament" data-sub="Grand Finals" data-cat="sports"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/gaming-tournament.jpg" alt="Gaming Tournament"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">GT</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Gaming Tournament</div>
+            <div class="photo-label-sub">Grand Finals</div>
+          </div>
+        </div>
+        <!-- New Photo 10: Watch Party -->
+        <div class="photo-item" data-label="Watch Party" data-sub="AOT Finale" data-cat="anime-night"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/watch-party.jpg" alt="Watch Party"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">WP</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Watch Party</div>
+            <div class="photo-label-sub">AOT Finale</div>
+          </div>
+        </div>
+        <!-- New Photo 11: Meetup Uganda -->
+        <div class="photo-item" data-label="Meetup Uganda" data-sub="Kla Chapter" data-cat="community"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/meetup-uganda.jpg" alt="Meetup Uganda"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">MU</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Meetup Uganda</div>
+            <div class="photo-label-sub">Kla Chapter</div>
+          </div>
+        </div>
+        <!-- New Photo 12: Cosplay Contest -->
+        <div class="photo-item" data-label="Cosplay Contest" data-sub="Best in Show" data-cat="anime-night"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/cosplay-contest.jpg" alt="Cosplay Contest"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">CC</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Cosplay Contest</div>
+            <div class="photo-label-sub">Best in Show</div>
+          </div>
+        </div>
+        <!-- New Photo 13: Panel Debates -->
+        <div class="photo-item" data-label="Panel Debates" data-sub="Hot Takes" data-cat="otamatsuri"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/panel-debates.jpg" alt="Panel Debates"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">PD</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Panel Debates</div>
+            <div class="photo-label-sub">Hot Takes</div>
+          </div>
+        </div>
+        <!-- New Photo 14: Podcast Live -->
+        <div class="photo-item" data-label="Podcast Live" data-sub="Season 2" data-cat="community"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/podcast-live.jpg" alt="Podcast Live"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">PL</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Podcast Live</div>
+            <div class="photo-label-sub">Season 2</div>
+          </div>
+        </div>
+        <!-- New Photo 15: Gaming Arena -->
+        <div class="photo-item" data-label="Gaming Arena" data-sub="Free Play" data-cat="sports"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/gaming-arena.jpg" alt="Gaming Arena"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">GA</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Gaming Arena</div>
+            <div class="photo-label-sub">Free Play</div>
+          </div>
+        </div>
+        <!-- New Photo 16: Artist Alley 2 -->
+        <div class="photo-item" data-label="Artist Alley 2" data-sub="Creators" data-cat="otamatsuri"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/artist-alley-2.jpg" alt="Artist Alley 2"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">AA</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Artist Alley 2</div>
+            <div class="photo-label-sub">Creators</div>
+          </div>
+        </div>
+        <!-- New Photo 17: J-Pop Karaoke -->
+        <div class="photo-item" data-label="J-Pop Karaoke" data-sub="Afterparty" data-cat="anime-night"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/jpop-karaoke.jpg" alt="J-Pop Karaoke"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">JK</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">J-Pop Karaoke</div>
+            <div class="photo-label-sub">Afterparty</div>
+          </div>
+        </div>
+        <!-- New Photo 18: Season Finale -->
+        <div class="photo-item" data-label="Season Finale" data-sub="Closing Night" data-cat="community"
+          onclick="openLightbox(this)">
+          <img src="./img/gallery/season-finale.jpg" alt="Season Finale"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">SF</div>
+          <div class="photo-overlay">
+            <div class="photo-expand"><i class="fa fa-expand"></i></div>
+            <div class="photo-label">Season Finale</div>
+            <div class="photo-label-sub">Closing Night</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="viewMoreContainer" class="text-center" style="display:none; margin-top: 1.5rem;">
+        <button class="view-more-btn" id="viewMoreBtn">VIEW MORE MEMORIES</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+    <span class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1)">&#10094;</span>
+    <span class="lightbox-nav lightbox-next" onclick="changeLightbox(1)">&#10095;</span>
+    <div class="lightbox-content">
+      <img id="lightboxImg" class="lightbox-img" src="" alt="">
+      <div id="lightboxPlaceholder" class="photo-placeholder"
+        style="display:none; font-size: 72px; width: 300px; height: 300px; margin: 0 auto; align-items: center; justify-content: center; background: var(--dark-card); border: 1px solid rgba(245, 194, 0, 0.3);">
+      </div>
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="container-xl px-3 px-md-4">
+      <div class="row g-4">
+        <div class="col-12 col-md-5">
+          <img src="./img/whatabout.png" alt="What About Anime" style="max-width: 180px; margin-bottom: 0.9rem;">
+          <p class="footer-brand-text">East Africa's home for anime culture. Podcast, events, hot takes, and community —
+            all from Uganda.</p>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="footer-col">
+            <h4>Navigate</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="events.html">Events</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="index.html#podcast">Podcast</a></li>
+              <li><a href="index.html#content">Content</a></li>
+              <li><a href="index.html#about">About</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="footer-col">
+            <h4>Listen On</h4>
+            <ul>
+              <li><a href="https://podcasts.apple.com/ug/podcast/what-about-anime/id1795232338">Apple Podcasts</a></li>
+              <li><a
+                  href="https://open.spotify.com/show/70QIxraF3psvOaiN4sQ9C6?utm_medium=share&utm_source=linktree">Spotify</a>
+              </li>
+              <li><a href="https://www.youtube.com/@whataboutanimeee">YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="footer-col">
+            <h4>Follow Us</h4>
+            <ul>
+              <li><a href="https://www.instagram.com/whataboutanimee/" target="_blank">Instagram</a></li>
+              <li><a href="https://www.tiktok.com/@whataboutanimee?lang=en" target="_blank">TikTok</a></li>
+              <li><a href="https://discord.com/invite/XXhMUw7Ay8" target="_blank">Discord</a></li>
+              <li><a href="https://www.youtube.com/@whataboutanimeee" target="_blank">YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <p class="footer-copy">© 2026 What About Anime — <span>Uganda</span>. All rights reserved.</p>
+        <div class="d-flex gap-2">
+          <a href="https://www.instagram.com/whataboutanimee/" target="_blank" class="social-link" title="Instagram"><i
+              class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@whataboutanimee?lang=en" target="_blank" class="social-link"
+            title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://discord.com/invite/XXhMUw7Ay8" target="_blank" class="social-link" title="Discord"><i
+              class="fa-brands fa-discord"></i></a>
+          <a href="https://www.youtube.com/@whataboutanimeee" target="_blank" class="social-link" title="YouTube"><i
+              class="fa-brands fa-youtube"></i></a>
+          <a href="https://linktr.ee/whatabout_anime?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnCbtvw-oTP8-FOk5pBvkJUIJjYg62DedqAvVa5cK-TjJbmK4x9dEm5VCXf7A_aem_X-m9ztiBdWMFP6oKQYp59w"
+            target="_blank" class="social-link" title="Linktree"><svg viewBox="0 0 24 24" width="1em" height="1em"
+              fill="currentColor">
+              <path
+                d="M13.736 5.853l4.005-4.117 2.325 2.38-4.2 4.005h5.908v3.305h-5.937l4.229 4.108-2.325 2.334-5.74-5.549v11.666h-3.328V12.11L2.932 17.66l-2.325-2.334 4.229-4.108H-.892V7.914h5.908L.816 3.91l2.325-2.38 4.005 4.117V.003h3.328v5.85z" />
+            </svg></a>
+          <a href="https://tr.ee/2TbKoCOWRR" target="_blank" class="social-link" title="Kaizoku"><img
+              src="./img/kaizoku.png" alt="Kaizoku"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // ── NAV SCROLL SHRINK ──
+    const navEl = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      navEl.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── GALLERY STATE & FILTERING ──
+    const state = {
+      activeFilter: 'all',
+      isExpanded: false
+    };
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const allItems = Array.from(document.querySelectorAll('.photo-item'));
+    const viewMoreContainer = document.getElementById('viewMoreContainer');
+    const viewMoreBtn = document.getElementById('viewMoreBtn');
+
+    function updateGallery(resetExpanded = false) {
+      if (resetExpanded) {
+        state.isExpanded = false;
+      }
+
+      // Filter items
+      const filteredItems = allItems.filter(item => {
+        return state.activeFilter === 'all' || item.dataset.cat === state.activeFilter;
+      });
+
+      // Calculate max to show (limit to 8 unless expanded)
+      const maxToShow = state.isExpanded ? filteredItems.length : 8;
+
+      // Hide all items first
+      allItems.forEach(item => {
+        item.style.display = 'none';
+      });
+
+      // Show matching items up to the limit
+      filteredItems.forEach((item, index) => {
+        if (index < maxToShow) {
+          item.style.display = '';
+        }
+      });
+
+      // Update visible count text
+      const visibleCount = Math.min(filteredItems.length, maxToShow);
+      document.getElementById('visibleCount').textContent = visibleCount;
+
+      // Handle "View More" button visibility & toggle state text
+      if (filteredItems.length > 8) {
+        viewMoreContainer.style.display = 'block';
+        if (state.isExpanded) {
+          viewMoreBtn.textContent = 'VIEW LESS MEMORIES';
+        } else {
+          viewMoreBtn.textContent = 'VIEW MORE MEMORIES';
+        }
+      } else {
+        viewMoreContainer.style.display = 'none';
+      }
+    }
+
+    // Filter button event listeners
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.activeFilter = btn.dataset.filter;
+        updateGallery(true);
+      });
+    });
+
+    // "View More / Less" button toggle event listener with smooth scroll back up
+    if (viewMoreBtn) {
+      viewMoreBtn.addEventListener('click', () => {
+        if (state.isExpanded) {
+          state.isExpanded = false;
+          updateGallery();
+          // Smooth scroll to photo album section label for fast, clean orientation
+          const scrollTarget = document.querySelector('.section-label');
+          if (scrollTarget) {
+            scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        } else {
+          state.isExpanded = true;
+          updateGallery();
+        }
+      });
+    }
+
+    // Initialize gallery view
+    updateGallery(true);
+
+    // ── LIGHTBOX ──
+    let currentIdx = 0;
+    let visibleItems = [];
+
+    function openLightbox(el) {
+      visibleItems = allItems.filter(item => item.style.display !== 'none');
+      currentIdx = visibleItems.indexOf(el);
+      showLightboxAt(currentIdx);
+      const overlay = document.getElementById('lightboxOverlay');
+      overlay.classList.add('active');
+      requestAnimationFrame(() => overlay.style.opacity = '1');
+    }
+
+    function showLightboxAt(idx) {
+      const item = visibleItems[idx];
+      const img = item.querySelector('img');
+      const label = item.dataset.label;
+      const placeholder = item.querySelector('.photo-placeholder');
+
+      const lbImg = document.getElementById('lightboxImg');
+      const lbPlaceholder = document.getElementById('lightboxPlaceholder');
+
+      if (img && img.style.display !== 'none') {
+        lbImg.src = img.src;
+        lbImg.style.display = 'block';
+        if (lbPlaceholder) lbPlaceholder.style.display = 'none';
+      } else {
+        lbImg.src = '';
+        lbImg.style.display = 'none';
+        if (lbPlaceholder) {
+          lbPlaceholder.style.display = 'flex';
+          lbPlaceholder.textContent = placeholder ? placeholder.textContent : 'WAA';
+        }
+      }
+      document.getElementById('lightboxCaption').textContent = label || '';
+    }
+
+    function closeLightbox() {
+      const overlay = document.getElementById('lightboxOverlay');
+      overlay.style.opacity = '0';
+      setTimeout(() => { overlay.classList.remove('active'); }, 300);
+    }
+
+    function changeLightbox(dir) {
+      if (!visibleItems.length) return;
+      currentIdx = (currentIdx + dir + visibleItems.length) % visibleItems.length;
+      const imgEl = document.getElementById('lightboxImg');
+      const placeholderEl = document.getElementById('lightboxPlaceholder');
+
+      if (imgEl.style.display !== 'none') {
+        imgEl.style.opacity = '0';
+      }
+      if (placeholderEl && placeholderEl.style.display !== 'none') {
+        placeholderEl.style.opacity = '0';
+      }
+
+      setTimeout(() => {
+        showLightboxAt(currentIdx);
+        if (imgEl.style.display !== 'none') {
+          imgEl.style.opacity = '1';
+        }
+        if (placeholderEl && placeholderEl.style.display !== 'none') {
+          placeholderEl.style.opacity = '1';
+        }
+      }, 150);
+    }
+
+    document.getElementById('lightboxOverlay').addEventListener('click', e => {
+      if (e.target.id === 'lightboxOverlay') closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightboxOverlay').classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') changeLightbox(-1);
+      if (e.key === 'ArrowRight') changeLightbox(1);
+    });
+
+    // ── FADE IN ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
