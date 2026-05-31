@@ -12,16 +12,16 @@
     rel="stylesheet">
   <style>
     :root {
-      --orange: #E8420A;
-      --orange-light: #FF5722;
-      --orange-dark: #B83208;
-      --yellow: #F5C200;
-      --yellow-light: #FFD740;
-      --cream: #FFF8E7;
-      --cream-dark: #F5EDCF;
-      --dark: #1A0F00;
-      --dark-mid: #2D1A05;
-      --text-body: #3D2008;
+      --orange: #FF4500;
+      --orange-light: #FF6347;
+      --orange-dark: #CC3700;
+      --yellow: #FFD700;
+      --yellow-light: #FFEA70;
+      --cream: #000000;
+      --cream-dark: #111111;
+      --dark: #000000;
+      --dark-mid: #111111;
+      --text-body: rgba(255, 255, 255, 0.7);
       --white: #FFFFFF;
     }
 
@@ -80,13 +80,24 @@
       left: 0;
       right: 0;
       z-index: 200;
-      background: var(--dark);
+      background: rgba(4, 4, 5, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       padding: 0 2rem;
-      height: 64px;
-      border-bottom: 2px solid var(--yellow);
+      height: 70px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 215, 0, 0.05);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      transition: all .4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    nav.scrolled {
+      height: 56px;
+      background: rgba(4, 4, 5, 0.88);
+      border-bottom-color: rgba(255, 69, 0, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 69, 0, 0.15);
     }
 
     .nav-logo {
@@ -100,10 +111,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), filter .3s ease;
+    }
+
+    .nav-logo:hover .logo-box {
+      transform: skewX(-6deg) scale(1.05);
+      filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.3));
     }
 
     .nav-logo .logo-sub {
-      color: var(--cream);
+      color: var(--white);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -112,40 +129,67 @@
 
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 1.75rem;
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
     .nav-links a {
-      color: var(--cream-dark);
+      color: rgba(255, 255, 255, 0.65);
       text-decoration: none;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      transition: color .2s;
+      transition: all .3s ease;
+      position: relative;
+      padding: 6px 2px;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--yellow);
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--yellow));
+      transition: all .3s cubic-bezier(0.25, 1, 0.5, 1);
+      transform: translateX(-50%);
+      box-shadow: 0 0 8px var(--yellow);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
     }
 
     .nav-cta {
-      background: var(--dark);
+      background: transparent;
       border: 1px solid var(--yellow);
       color: var(--yellow);
-      padding: 8px 18px;
+      padding: 8px 22px;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 16px;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       text-decoration: none;
-      transition: background .2s, color .2s;
+      transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
       white-space: nowrap;
+      border-radius: 4px;
     }
 
     .nav-cta:hover {
       background: var(--yellow);
-      color: var(--dark);
+      color: var(--dark) !important;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.45);
+      transform: translateY(-1px);
     }
 
     .navbar-toggler {
@@ -167,7 +211,7 @@
     }
 
     .hero-overlay {
-      background: rgba(26, 15, 0, 0.75);
+      background: rgba(11, 15, 25, 0.75);
       min-height: calc(100vh - 64px);
       display: flex;
       align-items: center;
@@ -230,7 +274,7 @@
     }
 
     .hero-desc {
-      color: rgba(255, 248, 231, .7);
+      color: rgba(255, 255, 255, .7);
       font-size: 15px;
       line-height: 1.7;
       margin-bottom: 1.75rem;
@@ -262,13 +306,13 @@
 
     .btn-outline-waa {
       background: transparent;
-      color: var(--cream);
+      color: var(--white);
       padding: 11px 28px;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 19px;
       letter-spacing: 1px;
       text-decoration: none;
-      border: 2px solid rgba(255, 248, 231, .3);
+      border: 2px solid rgba(255, 255, 255, .3);
       display: inline-block;
       transition: border-color .2s, color .2s;
     }
@@ -284,7 +328,7 @@
       gap: 1.5rem;
       margin-top: 2rem;
       padding-top: 1.5rem;
-      border-top: 1px solid rgba(255, 248, 231, .1);
+      border-top: 1px solid rgba(255, 255, 255, .1);
     }
 
     .stat-num {
@@ -299,7 +343,7 @@
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(255, 248, 231, .4);
+      color: rgba(255, 255, 255, .4);
     }
 
     /* ── POLAROID SLIDESHOW ── */
@@ -419,7 +463,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 13px;
       letter-spacing: 2px;
-      color: rgba(255, 248, 231, .45);
+      color: rgba(255, 255, 255, .45);
     }
 
     /* Dot indicators */
@@ -437,7 +481,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: rgba(255, 248, 231, .25);
+      background: rgba(255, 255, 255, .25);
       transition: background .3s, transform .3s;
       cursor: pointer;
       display: block;
@@ -520,7 +564,7 @@
     }
 
     .section-desc.light {
-      color: rgba(255, 248, 231, .6);
+      color: rgba(255, 255, 255, .6);
     }
 
     .divider-o {
@@ -564,22 +608,24 @@
     .cal-month {
       position: relative;
       background: var(--cream-dark);
-      border: 2px solid rgba(232, 66, 10, .12);
+      border: 1px solid rgba(99, 102, 241, 0.15);
       text-align: center;
       overflow: hidden;
-      transition: transform .2s, border-color .2s;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
       display: flex;
       flex-direction: column;
+      border-radius: 8px;
     }
 
     .cal-month:hover {
       transform: translateY(-4px);
       border-color: var(--orange);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.12);
     }
 
     .cal-month.featured {
       background: var(--yellow);
-      border-color: var(--yellow-light);
+      border-color: var(--yellow);
     }
 
     .cal-bg {
@@ -647,15 +693,23 @@
     .cal-day {
       font-size: 11px;
       font-style: italic;
-      color: rgba(61, 32, 8, .5);
+      color: rgba(255, 255, 255, 0.6);
       font-weight: 600;
     }
 
     .cal-desc {
       font-size: 10px;
-      color: rgba(61, 32, 8, .6);
+      color: rgba(255, 255, 255, 0.7);
       margin-top: 5px;
       line-height: 1.4;
+    }
+
+    /* Target small text inside the yellow featured events to be black */
+    .cal-month.featured .cal-event-name,
+    .cal-month.featured .cal-day,
+    .cal-month.featured .cal-desc {
+      color: #000000;
+      font-weight: 800; /* Made slightly bolder for legibility */
     }
 
     .sporadic-box {
@@ -675,7 +729,7 @@
     .sporadic-box p {
       font-size: 13px;
       line-height: 1.6;
-      color: var(--text-body);
+      color: var(--dark);
     }
 
     /* Menu image */
@@ -752,12 +806,12 @@
     }
 
     .podcast-overlay {
-      background: rgba(26, 15, 0, .88);
+      background: rgba(11, 15, 25, 0.88);
     }
 
     .ep-card {
-      background: rgba(255, 248, 231, .04);
-      border: 1px solid rgba(255, 248, 231, .08);
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
       padding: 1rem 1.25rem;
       display: flex;
       align-items: center;
@@ -803,7 +857,7 @@
     .ep-title {
       font-size: 14px;
       font-weight: 800;
-      color: var(--cream);
+      color: var(--white);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -812,7 +866,7 @@
 
     .ep-date {
       font-size: 11px;
-      color: rgba(255, 248, 231, .35);
+      color: rgba(255, 255, 255, .35);
     }
 
     .ep-tag-pill {
@@ -831,13 +885,13 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 248, 231, .06);
-      color: var(--cream);
+      background: rgba(255, 255, 255, .06);
+      color: var(--white);
       padding: 9px 16px;
       font-size: 12px;
       font-weight: 700;
       text-decoration: none;
-      border: 1px solid rgba(255, 248, 231, .12);
+      border: 1px solid rgba(255, 255, 255, .12);
       transition: background .2s, border-color .2s;
       letter-spacing: .5px;
       white-space: nowrap;
@@ -855,9 +909,9 @@
       justify-content: center;
       gap: 8px;
       width: 100%;
-      background: rgba(255, 248, 231, .05);
-      border: 1px solid rgba(255, 248, 231, .1);
-      color: rgba(255, 248, 231, .5);
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      color: rgba(255, 255, 255, .5);
       padding: 12px;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 18px;
@@ -972,7 +1026,7 @@
 
     .community-card {
       background: rgba(255, 255, 255, .03);
-      border: 2px solid rgba(255, 248, 231, .07);
+      border: 2px solid rgba(255, 255, 255, .07);
       padding: 2rem;
       transition: border-color .2s;
       height: 100%;
@@ -997,7 +1051,7 @@
     .community-card-desc {
       font-size: 13px;
       line-height: 1.6;
-      color: rgba(255, 248, 231, .5);
+      color: rgba(255, 255, 255, .5);
       margin-bottom: 1.25rem;
     }
 
@@ -1080,7 +1134,7 @@
     }
 
     .about-story-text {
-      color: rgba(255, 248, 231, .7);
+      color: rgba(255, 255, 255, .7);
       font-size: 14px;
       line-height: 1.8;
     }
@@ -1111,7 +1165,7 @@
     .footer-brand-text {
       font-size: 12px;
       line-height: 1.7;
-      color: rgba(255, 248, 231, .4);
+      color: rgba(255, 255, 255, .4);
       max-width: 260px;
     }
 
@@ -1132,7 +1186,7 @@
     }
 
     .footer-col ul li a {
-      color: rgba(255, 248, 231, .4);
+      color: rgba(255, 255, 255, .4);
       text-decoration: none;
       font-size: 12px;
       font-weight: 600;
@@ -1144,13 +1198,13 @@
     }
 
     .footer-divider {
-      border-color: rgba(255, 248, 231, .08);
+      border-color: rgba(255, 255, 255, .08);
       margin: 1.5rem 0 1rem;
     }
 
     .footer-copy {
       font-size: 11px;
-      color: rgba(255, 248, 231, .25);
+      color: rgba(255, 255, 255, .25);
       font-weight: 600;
     }
 
@@ -1161,11 +1215,11 @@
     .social-link {
       width: 34px;
       height: 34px;
-      border: 1px solid rgba(255, 248, 231, .14);
+      border: 1px solid rgba(255, 255, 255, .14);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255, 248, 231, .38);
+      color: rgba(255, 255, 255, .38);
       text-decoration: none;
       font-size: 15px;
       border-radius: 4px;
@@ -1236,45 +1290,7 @@
       pointer-events: none;
     }
 
-    /* Nav scroll shrink */
-    nav.scrolled {
-      height: 52px;
-      border-bottom-width: 2px;
-      transition: height .3s ease, border-bottom-width .3s ease;
-    }
-
-    nav {
-      transition: height .3s ease;
-    }
-
-    /* Logo pulse on hover */
-    .nav-logo .logo-box {
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-
-    .nav-logo:hover .logo-box {
-      transform: skewX(-4deg) scale(1.05);
-    }
-
-    /* Nav link underline sweep */
-    .nav-links a {
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--yellow);
-      transition: width .25s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    /* Legacy nav styles removed */
 
     /* Hero tag bounce in */
     @keyframes slideDown {
@@ -1703,7 +1719,7 @@
     /* Overlay — blue-tinted for Discord, dark-orange for Merch */
     .discord-overlay {
       position: relative;
-      background: linear-gradient(135deg, rgba(26, 15, 0, .85) 0%, rgba(88, 101, 242, .3) 100%);
+      background: linear-gradient(135deg, rgba(11, 15, 25, 0.85) 0%, rgba(88, 101, 242, 0.3) 100%);
       display: flex;
       align-items: center;
       width: 100%;
@@ -1711,7 +1727,7 @@
 
     .merch-overlay {
       position: relative;
-      background: linear-gradient(135deg, rgba(26, 15, 0, .82) 0%, rgba(232, 66, 10, .25) 100%);
+      background: linear-gradient(135deg, rgba(11, 15, 25, 0.82) 0%, rgba(99, 102, 241, 0.25) 100%);
       display: flex;
       align-items: center;
       width: 100%;
@@ -1748,7 +1764,7 @@
     .panel-desc {
       font-size: 15px;
       line-height: 1.7;
-      color: rgba(255, 248, 231, .7);
+      color: rgba(255, 255, 255, .7);
       max-width: 480px;
       margin: 0;
     }
@@ -1855,7 +1871,7 @@
     .merch-tagline {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(18px, 2.5vw, 26px);
-      color: rgba(255, 248, 231, .75);
+      color: rgba(255, 255, 255, .75);
       letter-spacing: 2px;
       margin: 0;
     }
@@ -1906,18 +1922,12 @@
       
       /* Use dragonball2.jpg for mobile */
       .site-footer {
-        background-image: linear-gradient(to bottom, rgba(26, 15, 0, 0.728) 0%, rgba(26, 15, 0, 1) 100%), url('./img/dragonball2.jpg') !important;
-        background-size: cover !important;
-        background-position: center bottom !important;
+        background-color: var(--dark) !important;
       }
     }
 
     .site-footer {
-      background-image: linear-gradient(to bottom, rgba(26, 15, 0, 0.728) 0%, rgba(26, 15, 0, 1) 100%), url('./img/dbs.jpg');
-      background-size: cover;
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      background-color: #1a0f00;
+      background-color: var(--dark);
     }
 
     /* Text selection */
@@ -1983,7 +1993,7 @@
       text-transform: uppercase;
       padding: 6px 16px;
       background: transparent;
-      color: rgba(255, 248, 231, 0.5);
+      color: rgba(255, 255, 255, 0.5);
       border: 1px solid rgba(245, 194, 0, 0.25);
       cursor: pointer;
       transition: all 0.2s ease;
@@ -2005,7 +2015,7 @@
     .events-counter {
       font-family: 'Space Mono', monospace;
       font-size: 12px;
-      color: rgba(255, 248, 231, 0.5);
+      color: rgba(255, 255, 255, 0.5);
       letter-spacing: 1.5px;
       text-transform: uppercase;
       margin-bottom: 1rem;
@@ -2019,11 +2029,12 @@
       justify-content: space-between;
       gap: 1rem;
       background: var(--dark);
-      border: 2px solid var(--orange);
-      border-left: 6px solid var(--orange);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-left: 4px solid var(--orange);
       padding: 1rem 1.5rem;
       margin-bottom: 1.75rem;
       flex-wrap: wrap;
+      border-radius: 8px;
     }
 
     .next-event-banner-left {
@@ -2060,7 +2071,7 @@
 
     .next-event-date {
       font-size: 12px;
-      color: rgba(255, 248, 231, 0.55);
+      color: rgba(255, 255, 255, 0.55);
       font-weight: 600;
       letter-spacing: .5px;
     }
@@ -2110,14 +2121,15 @@
     .event-list-item {
       display: flex;
       align-items: center;
-      background: #0d0703;
-      border: 1px solid rgba(245, 194, 0, 0.15);
+      background: var(--dark-mid);
+      border: 1px solid rgba(6, 182, 212, 0.15);
       padding: 1rem 1.5rem;
       position: relative;
       overflow: hidden;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       cursor: pointer;
       border-left: 4px solid var(--yellow);
+      border-radius: 8px;
     }
 
     .event-list-item::after {
@@ -2177,7 +2189,7 @@
     .event-list-year {
       font-family: 'Space Mono', monospace;
       font-size: 13px;
-      color: rgba(255, 248, 231, 0.85);
+      color: rgba(255, 255, 255, 0.85);
       margin-top: 2px;
       letter-spacing: 1px;
       font-weight: 700;
@@ -2219,7 +2231,7 @@
 
     .event-list-desc {
       font-size: 13px;
-      color: rgba(255, 248, 231, 0.6);
+      color: rgba(255, 255, 255, 0.6);
       line-height: 1.4;
       margin: 0;
     }
@@ -2227,7 +2239,7 @@
     .event-list-day-name {
       font-family: 'Space Mono', monospace;
       font-size: 10px;
-      color: rgba(255, 248, 231, 0.35);
+      color: rgba(255, 255, 255, 0.35);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -2292,9 +2304,9 @@
       justify-content: center;
       gap: 8px;
       width: 100%;
-      background: rgba(255, 248, 231, .05);
-      border: 1px solid rgba(255, 248, 231, .1);
-      color: rgba(255, 248, 231, .5);
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      color: rgba(255, 255, 255, .5);
       padding: 12px;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 18px;
@@ -2330,14 +2342,17 @@
 
     /* ── NEW PROGRAMME & PAGE HEADER STYLES ── */
     .page-header {
-      background-image: linear-gradient(to bottom, rgba(26, 15, 0, 0.85) 0%, rgba(6, 3, 1, 0.98) 100%), url('./img/dbs.jpg');
+      background-color: #040405;
+      background-image: 
+        linear-gradient(to bottom, rgba(4, 4, 5, 0.5) 0%, rgba(5, 4, 4, 0.98) 100%),
+        url('./img/new/feb268.jpg');
       background-size: cover;
-      background-position: center 30%;
+      background-position: center;
       background-repeat: no-repeat;
-      background-color: #060301;
-      padding: 130px 1.5rem 90px;
+      padding: 160px 1.5rem 110px;
       text-align: center;
       position: relative;
+      overflow: hidden;
     }
 
     .page-header::before {
@@ -2347,7 +2362,7 @@
       left: 0;
       width: 100%;
       height: 100px;
-      background: linear-gradient(to top, #060301 0%, transparent 100%);
+      background: linear-gradient(to top, var(--dark) 0%, transparent 100%);
       pointer-events: none;
     }
 
@@ -2384,12 +2399,11 @@
 
     .page-title .accent {
       color: var(--yellow);
-      text-shadow: 0 0 25px rgba(245, 194, 0, 0.35);
     }
 
     .page-subtitle {
       font-family: 'Nunito', sans-serif;
-      color: rgba(255, 248, 231, 0.7);
+      color: rgba(255, 255, 255, 0.7);
       font-size: clamp(15px, 2vw, 20px);
       max-width: 650px;
       margin: 0 auto;
@@ -2405,7 +2419,7 @@
     }
 
     .events-page {
-      background: #060301;
+      background: var(--dark);
       padding: 4rem 0 6rem;
       min-height: auto;
     }
@@ -2466,13 +2480,15 @@
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 1px;
-      background: rgba(232, 66, 10, 0.15);
-      border: 1px solid rgba(232, 66, 10, 0.15);
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.15);
       margin-bottom: 5rem;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     .prog-card {
-      background: #060402;
+      background: var(--dark-mid);
       padding: 2.5rem 1.5rem;
       position: relative;
       overflow: hidden;
@@ -2544,7 +2560,7 @@
     .prog-card-desc {
       font-family: 'Nunito', sans-serif;
       font-size: 12.5px;
-      color: rgba(255, 248, 231, 0.5);
+      color: rgba(255, 255, 255, 0.5);
       line-height: 1.4;
       margin: 0;
       margin-top: 0.25rem;
@@ -2575,6 +2591,88 @@
         padding: 2rem 1.5rem;
         min-height: auto;
       }
+    }
+    /* ── EVENT LIGHTBOX MODAL ── */
+    #eventModal .modal-content {
+      background: transparent;
+      border: none;
+    }
+    #eventModal .modal-dialog {
+      max-width: 90vw;
+      margin-top: 2.5vh;
+    }
+    @media(max-width: 768px) {
+      #eventModal .modal-dialog { max-width: 95vw; }
+    }
+    #eventModal .btn-close-custom {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 1055;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+    #eventModal .btn-close-custom:hover {
+      background: var(--orange);
+      transform: scale(1.1);
+    }
+    .event-carousel-img {
+      width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .carousel-indicators.event-indicators {
+      bottom: auto;
+      top: 15px;
+      margin-bottom: 0;
+    }
+    .carousel-indicators.event-indicators [data-bs-target] {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin: 0 4px;
+      background-color: rgba(255,255,255,0.3);
+      border: none;
+    }
+    .carousel-indicators.event-indicators .active {
+      background-color: #fff;
+      box-shadow: 0 0 8px rgba(255,255,255,0.8);
+    }
+    .carousel-control-prev.event-control,
+    .carousel-control-next.event-control {
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+    .carousel-control-prev.event-control { left: 20px; }
+    .carousel-control-next.event-control { right: 20px; }
+    .carousel-control-prev.event-control:hover,
+    .carousel-control-next.event-control:hover {
+      opacity: 1;
+      background: #fff;
+      box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    }
+    .carousel-control-prev-icon.event-control-icon,
+    .carousel-control-next-icon.event-control-icon {
+      filter: invert(1);
+      width: 1.5rem;
+      height: 1.5rem;
     }
   </style>
   <link rel="icon" type="image/png" href="./img/logo.png">
@@ -2608,22 +2706,22 @@
     style="position:fixed;top:64px;left:0;right:0;z-index:199;background:var(--dark);border-bottom:2px solid var(--yellow);padding:1rem 1.5rem;">
     <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.75rem;">
       <li><a href="events.html"
-          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">Events</a></li>
       <li><a href="index.html#podcast"
-          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">Podcast</a></li>
       <li><a href="index.html#content"
-          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">Content</a></li>
       <li><a href="index.html#community"
-          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">Community</a></li>
       <li><a href="index.html#about"
-          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">About</a></li>
       <li><a href="gallery.html"
-          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">Gallery</a></li>
     </ul>
   </div>
@@ -2871,24 +2969,7 @@
 
         <!-- Stylish Rectangles Events List -->
         <div class="event-list fade-in">
-          <!-- FEB -->
-          <div class="event-list-item" data-category="anime-night">
-            <div class="event-list-date">
-              <span class="event-list-month">FEB</span>
-              <span class="event-list-day-num">26</span>
-              <span class="event-list-year">2026</span>
-            </div>
-            <div class="event-list-info">
-              <div class="event-list-header">
-                <h3 class="event-list-title">Anime Night</h3>
-                <span class="event-list-category">Anime Night</span>
-              </div>
-              <p class="event-list-desc">East Africa's premier anime screening, networking and gaming night.</p>
-              <span class="event-list-day-name">Thursday</span>
-            </div>
-            <div class="event-list-action">[ VIEW ]</div>
-          </div>
-          <!-- MAR -->
+          <!-- MAR 2026 -->
           <div class="event-list-item" data-category="community">
             <div class="event-list-date">
               <span class="event-list-month">MAR</span>
@@ -2905,11 +2986,11 @@
             </div>
             <div class="event-list-action">[ VIEW ]</div>
           </div>
-          <!-- APR -->
+          <!-- FEB 2026 -->
           <div class="event-list-item" data-category="anime-night">
             <div class="event-list-date">
-              <span class="event-list-month">APR</span>
-              <span class="event-list-day-num">30</span>
+              <span class="event-list-month">FEB</span>
+              <span class="event-list-day-num">26</span>
               <span class="event-list-year">2026</span>
             </div>
             <div class="event-list-info">
@@ -2917,17 +2998,19 @@
                 <h3 class="event-list-title">Anime Night</h3>
                 <span class="event-list-category">Anime Night</span>
               </div>
-              <p class="event-list-desc">Join us for screenings, anime trivia, and incredible vibes.</p>
+              <p class="event-list-desc">East Africa's premier anime screening, networking and gaming night.</p>
               <span class="event-list-day-name">Thursday</span>
             </div>
             <div class="event-list-action">[ VIEW ]</div>
           </div>
-          <!-- MAY -->
+
+          
+          <!-- NOV 2025 -->
           <div class="event-list-item" data-category="anime-night">
             <div class="event-list-date">
-              <span class="event-list-month">MAY</span>
-              <span class="event-list-day-num">28</span>
-              <span class="event-list-year">2026</span>
+              <span class="event-list-month">NOV</span>
+              <span class="event-list-day-num">27</span>
+              <span class="event-list-year">2025</span>
             </div>
             <div class="event-list-info">
               <div class="event-list-header">
@@ -2939,63 +3022,29 @@
             </div>
             <div class="event-list-action">[ VIEW ]</div>
           </div>
-          <!-- JUN -->
-          <div class="event-list-item" data-category="sports">
-            <div class="event-list-date">
-              <span class="event-list-month">JUN</span>
-              <span class="event-list-day-num">27</span>
-              <span class="event-list-year">2026</span>
-            </div>
-            <div class="event-list-info">
-              <div class="event-list-header">
-                <h3 class="event-list-title">Summer Sports Event</h3>
-                <span class="event-list-category">Sports</span>
-              </div>
-              <p class="event-list-desc">Sports, nerds, touch grass. Compete in community activities!</p>
-              <span class="event-list-day-name">Saturday</span>
-            </div>
-            <div class="event-list-action">[ VIEW ]</div>
-          </div>
-          <!-- JUL -->
+          <!-- OCT 2025 -->
           <div class="event-list-item" data-category="anime-night">
             <div class="event-list-date">
-              <span class="event-list-month">JUL</span>
+              <span class="event-list-month">OCT</span>
               <span class="event-list-day-num">30</span>
-              <span class="event-list-year">2026</span>
+              <span class="event-list-year">2025</span>
             </div>
             <div class="event-list-info">
               <div class="event-list-header">
-                <h3 class="event-list-title">Anime Night</h3>
+                <h3 class="event-list-title">Halloween Anime Night</h3>
                 <span class="event-list-category">Anime Night</span>
               </div>
-              <p class="event-list-desc">Special screenings, cosplay showcase, and anime music playlists.</p>
+              <p class="event-list-desc">Spooky season special screenings and cosplay showcase.</p>
               <span class="event-list-day-name">Thursday</span>
             </div>
             <div class="event-list-action">[ VIEW ]</div>
           </div>
-          <!-- AUG -->
-          <div class="event-list-item" data-category="otamatsuri">
-            <div class="event-list-date">
-              <span class="event-list-month">AUG</span>
-              <span class="event-list-day-num" style="font-size: 20px;">Nairobi</span>
-              <span class="event-list-year">2026</span>
-            </div>
-            <div class="event-list-info">
-              <div class="event-list-header">
-                <h3 class="event-list-title">Otamatsurui</h3>
-                <span class="event-list-category">Otamatsuri</span>
-              </div>
-              <p class="event-list-desc">Raiding Nairobi Kenya for the biggest Otaku event in the region.</p>
-              <span class="event-list-day-name">Saturday</span>
-            </div>
-            <div class="event-list-action">[ VIEW ]</div>
-          </div>
-          <!-- SEPT -->
+          <!-- SEPT 2025 -->
           <div class="event-list-item" data-category="anime-night">
             <div class="event-list-date">
               <span class="event-list-month">SEPT</span>
-              <span class="event-list-day-num">24</span>
-              <span class="event-list-year">2026</span>
+              <span class="event-list-day-num">25</span>
+              <span class="event-list-year">2025</span>
             </div>
             <div class="event-list-info">
               <div class="event-list-header">
@@ -3007,37 +3056,54 @@
             </div>
             <div class="event-list-action">[ VIEW ]</div>
           </div>
-          <!-- OCT -->
+          <!-- AUG 2025 -->
+          <div class="event-list-item" data-category="otamatsuri">
+            <div class="event-list-date">
+              <span class="event-list-month">AUG</span>
+              <span class="event-list-day-num" style="font-size: 20px;">Nairobi</span>
+              <span class="event-list-year">2025</span>
+            </div>
+            <div class="event-list-info">
+              <div class="event-list-header">
+                <h3 class="event-list-title">Otamatsuri</h3>
+                <span class="event-list-category">Otamatsuri</span>
+              </div>
+              <p class="event-list-desc">Raiding Nairobi Kenya for the biggest Otaku event in the region.</p>
+              <span class="event-list-day-name">Saturday</span>
+            </div>
+            <div class="event-list-action">[ VIEW ]</div>
+          </div>
+          <!-- JUL 2025 -->
           <div class="event-list-item" data-category="anime-night">
             <div class="event-list-date">
-              <span class="event-list-month">OCT</span>
-              <span class="event-list-day-num">29</span>
-              <span class="event-list-year">2026</span>
+              <span class="event-list-month">JUL</span>
+              <span class="event-list-day-num">31</span>
+              <span class="event-list-year">2025</span>
             </div>
             <div class="event-list-info">
               <div class="event-list-header">
                 <h3 class="event-list-title">Anime Night</h3>
                 <span class="event-list-category">Anime Night</span>
               </div>
-              <p class="event-list-desc">Spooky season special screenings and gaming tournaments.</p>
+              <p class="event-list-desc">Special screenings, cosplay showcase, and anime music playlists.</p>
               <span class="event-list-day-name">Thursday</span>
             </div>
             <div class="event-list-action">[ VIEW ]</div>
           </div>
-          <!-- NOV -->
-          <div class="event-list-item" data-category="community">
+          <!-- JUN 2025 -->
+          <div class="event-list-item" data-category="sports">
             <div class="event-list-date">
-              <span class="event-list-month">NOV</span>
-              <span class="event-list-day-num" style="font-size: 20px;">ANNIV</span>
-              <span class="event-list-year">2026</span>
+              <span class="event-list-month">JUN</span>
+              <span class="event-list-day-num">28</span>
+              <span class="event-list-year">2025</span>
             </div>
             <div class="event-list-info">
               <div class="event-list-header">
-                <h3 class="event-list-title">Anniversary Celebration</h3>
-                <span class="event-list-category">Community</span>
+                <h3 class="event-list-title">Summer Sports Event</h3>
+                <span class="event-list-category">Sports</span>
               </div>
-              <p class="event-list-desc">Celebrating another year of community as our curtain closer.</p>
-              <span class="event-list-day-name">Saturday (Curtain Closer)</span>
+              <p class="event-list-desc">Sports, nerds, touch grass. Compete in community activities!</p>
+              <span class="event-list-day-name">Saturday</span>
             </div>
             <div class="event-list-action">[ VIEW ]</div>
           </div>
@@ -3121,6 +3187,38 @@
       </div>
     </div>
   </footer>
+
+  <!-- Event Details Modal -->
+  <!-- Event Details Modal -->
+  <div class="modal fade" id="eventModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content relative">
+        <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        
+        <div id="eventImageCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators event-indicators" id="modalEventIndicators">
+            <!-- Indicators will be injected here via JS -->
+          </div>
+          
+          <div class="carousel-inner" id="modalEventImages">
+            <!-- Images will be injected here via JS -->
+          </div>
+          <button class="carousel-control-prev event-control" type="button" data-bs-target="#eventImageCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon event-control-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next event-control" type="button" data-bs-target="#eventImageCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon event-control-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <h4 id="modalEventTitle" style="color: var(--yellow); font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; text-align: center; margin-top: 1.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.8);"></h4>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
@@ -3246,6 +3344,40 @@
 
       // 3. Perform initial filtering
       filterEvents('all');
+
+      // 4. Modal Logic for Event List
+      const eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
+      eventListContainer.addEventListener('click', (e) => {
+        const item = e.target.closest('.event-list-item');
+        if (item) {
+          const title = item.querySelector('.event-list-title').textContent;
+          document.getElementById('modalEventTitle').textContent = title;
+          
+          const imagesContainer = document.getElementById('modalEventImages');
+          const indicatorsContainer = document.getElementById('modalEventIndicators');
+          imagesContainer.innerHTML = '';
+          indicatorsContainer.innerHTML = '';
+          
+          // Generate a safe folder name from the title (e.g. "Anime Night" -> "anime-night")
+          const folderName = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+          
+          // 5 Image placeholders/real images for user to replace
+          for (let i = 1; i <= 5; i++) {
+             indicatorsContainer.innerHTML += `<button type="button" data-bs-target="#eventImageCarousel" data-bs-slide-to="${i-1}" class="${i === 1 ? 'active' : ''}"></button>`;
+             
+             imagesContainer.innerHTML += `
+               <div class="carousel-item ${i === 1 ? 'active' : ''}">
+                 <img src="./img/events/${folderName}/${i}.jpg" class="event-carousel-img" alt="${title} image ${i}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                 <div style="background-color: var(--dark-mid); height: 75vh; width: 100%; border: 1px dashed rgba(255,255,255,0.2); display: none; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-family: 'Space Mono', monospace; font-size: 16px; text-align: center; border-radius: 8px; flex-direction: column; gap: 10px;">
+                    <i class="fa-regular fa-image" style="font-size: 40px; color: var(--orange);"></i>
+                    <span style="max-width: 300px; line-height: 1.5;">Missing image!<br><br>Upload your image to:<br><strong style="color:var(--yellow);">./img/events/${folderName}/${i}.jpg</strong></span>
+                 </div>
+               </div>
+             `;
+          }
+          eventModal.show();
+        }
+      });
     });
   </script>
 </body>

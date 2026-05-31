@@ -12,16 +12,16 @@
     rel="stylesheet">
   <style>
     :root {
-      --orange: #FF4500;
-      --orange-light: #FF6347;
-      --orange-dark: #CC3700;
-      --yellow: #FFD700;
-      --yellow-light: #FFEA70;
-      --cream: #000000;
-      --cream-dark: #111111;
+      --orange: #FF6B00;
+      --orange-light: #FF8C33;
+      --orange-dark: #CC5500;
+      --yellow: #F5C200;
+      --yellow-light: #FFD740;
+      --cream: #111111;
+      --cream-dark: #1A1A1A;
       --dark: #000000;
-      --dark-mid: #111111;
-      --text-body: rgba(255, 255, 255, 0.7);
+      --dark-mid: #0D0D0D;
+      --text-body: #E8E8E8;
       --white: #FFFFFF;
     }
 
@@ -38,7 +38,7 @@
 
     body {
       font-family: 'Nunito', sans-serif;
-      background: var(--cream);
+      background: #000;
       color: var(--text-body);
       overflow-x: hidden;
     }
@@ -80,24 +80,13 @@
       left: 0;
       right: 0;
       z-index: 200;
-      background: rgba(4, 4, 5, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: var(--dark);
       padding: 0 2rem;
-      height: 70px;
-      border-bottom: 1px solid rgba(255, 69, 0, 0.25);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 69, 0, 0.05);
+      height: 64px;
+      border-bottom: 3px solid var(--orange);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: all .4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    nav.scrolled {
-      height: 56px;
-      background: rgba(4, 4, 5, 0.88);
-      border-bottom-color: rgba(255, 215, 0, 0.4);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 215, 0, 0.15);
     }
 
     .nav-logo {
@@ -111,16 +100,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), filter .3s ease;
-    }
-
-    .nav-logo:hover .logo-box {
-      transform: skewX(-6deg) scale(1.05);
-      filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.3));
     }
 
     .nav-logo .logo-sub {
-      color: var(--white);
+      color: var(--cream);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -129,65 +112,40 @@
 
     .nav-links {
       display: flex;
-      gap: 1.75rem;
+      gap: 1.5rem;
       list-style: none;
-      margin: 0;
-      padding: 0;
     }
 
     .nav-links a {
-      color: rgba(255, 255, 255, 0.65);
+      color: var(--cream-dark);
       text-decoration: none;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      transition: all .3s ease;
-      position: relative;
-      padding: 6px 2px;
+      transition: color .2s;
     }
 
     .nav-links a:hover {
       color: var(--yellow);
-      text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--orange), var(--yellow));
-      transition: all .3s cubic-bezier(0.25, 1, 0.5, 1);
-      transform: translateX(-50%);
-      box-shadow: 0 0 8px var(--orange);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
     }
 
     .nav-cta {
-      background: transparent;
+      background: var(--dark);
       border: 1px solid var(--orange);
       color: var(--orange);
-      padding: 8px 22px;
+      padding: 8px 18px;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 16px;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       text-decoration: none;
-      transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: background .2s, color .2s;
       white-space: nowrap;
-      border-radius: 4px;
     }
 
     .nav-cta:hover {
       background: var(--orange);
-      color: var(--dark) !important;
-      box-shadow: 0 0 20px rgba(255, 69, 0, 0.45);
-      transform: translateY(-1px);
+      color: var(--dark);
     }
 
     .navbar-toggler {
@@ -232,7 +190,7 @@
       position: absolute;
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(80px, 15vw, 220px);
-      color: rgba(99, 102, 241, 0.05);
+      color: rgba(255, 107, 0, 0.05);
       letter-spacing: -5px;
       top: 50%;
       left: 50%;
@@ -272,7 +230,7 @@
     }
 
     .hero-desc {
-      color: rgba(255, 255, 255, .7);
+      color: rgba(255, 248, 231, .7);
       font-size: 15px;
       line-height: 1.7;
       margin-bottom: 1.75rem;
@@ -304,13 +262,13 @@
 
     .btn-outline-waa {
       background: transparent;
-      color: var(--white);
+      color: var(--cream);
       padding: 11px 28px;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 19px;
       letter-spacing: 1px;
       text-decoration: none;
-      border: 2px solid rgba(255, 255, 255, .3);
+      border: 2px solid rgba(255, 248, 231, .3);
       display: inline-block;
       transition: border-color .2s, color .2s;
     }
@@ -326,7 +284,7 @@
       gap: 1.5rem;
       margin-top: 2rem;
       padding-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, .1);
+      border-top: 1px solid rgba(255, 248, 231, .1);
     }
 
     .stat-num {
@@ -341,7 +299,7 @@
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, .4);
+      color: rgba(255, 248, 231, .4);
     }
 
     /* ── POLAROID SLIDESHOW ── */
@@ -461,7 +419,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 13px;
       letter-spacing: 2px;
-      color: rgba(255, 255, 255, .45);
+      color: rgba(255, 248, 231, .45);
     }
 
     /* Dot indicators */
@@ -479,7 +437,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, .25);
+      background: rgba(255, 248, 231, .25);
       transition: background .3s, transform .3s;
       cursor: pointer;
       display: block;
@@ -538,7 +496,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(40px, 5.5vw, 72px);
       line-height: .95;
-      color: var(--dark);
+      color: #ffffff;
       margin-bottom: .75rem;
     }
 
@@ -557,12 +515,12 @@
     .section-desc {
       font-size: 15px;
       line-height: 1.7;
-      color: rgba(61, 32, 8, .6);
+      color: rgba(232, 232, 232, 0.6);
       max-width: 520px;
     }
 
     .section-desc.light {
-      color: rgba(255, 255, 255, .6);
+      color: rgba(255, 248, 231, .6);
     }
 
     .divider-o {
@@ -583,7 +541,7 @@
 
     .upcoming-event-card {
       background: var(--dark-mid);
-      border: 1px solid rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(255, 107, 0, 0.2);
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       height: 100%;
       display: flex;
@@ -595,7 +553,7 @@
     .upcoming-event-card:hover {
       transform: translateY(-5px);
       border-color: var(--orange);
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.08);
+      box-shadow: 0 10px 30px rgba(255, 107, 0, 0.12);
     }
 
     .upcoming-img-container {
@@ -660,7 +618,7 @@
     .upcoming-event-desc {
       font-size: 14.5px;
       line-height: 1.6;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 248, 231, 0.7);
       margin-bottom: 1.5rem;
     }
 
@@ -668,14 +626,14 @@
       margin-top: auto;
       display: flex;
       gap: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255, 248, 231, 0.08);
       padding-top: 1rem;
       flex-wrap: wrap;
     }
 
     .upcoming-meta-item {
       font-size: 12.5px;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 248, 231, 0.5);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -716,7 +674,7 @@
     .past-event-card {
       display: flex;
       background: var(--dark-mid);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 248, 231, 0.08);
       transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
       text-decoration: none !important;
       border-radius: 4px;
@@ -726,7 +684,7 @@
     .past-event-card:hover {
       border-color: rgba(245, 194, 0, 0.4);
       transform: translateX(4px);
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 248, 231, 0.02);
     }
 
     .past-event-thumb {
@@ -752,7 +710,7 @@
       top: 8px;
       left: 8px;
       background: rgba(0, 0, 0, 0.6);
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 248, 231, 0.7);
       font-family: 'Space Mono', monospace;
       font-size: 8px;
       font-weight: 700;
@@ -793,7 +751,7 @@
     .past-event-desc {
       font-size: 12.5px;
       line-height: 1.4;
-      color: rgba(255, 255, 255, 0.55);
+      color: rgba(255, 248, 231, 0.55);
       margin: 0;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -818,126 +776,21 @@
       }
     }
 
-    /* ── PODCAST — SPLIT WITH ACCENT COLUMN ── */
+    /* ── PODCAST ── */
     #podcast {
       background: var(--dark);
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      min-height: 0;
-      position: relative;
+      /* BG IMAGE SLOT:
+     background-image: url('your-podcast-bg.jpg');
+     background-size: cover; background-position: center; */
     }
 
-    @media(max-width:991px) {
-      #podcast {
-        grid-template-columns: 1fr;
-      }
+    .podcast-overlay {
+      background: rgba(11, 15, 25, 0.88);
     }
 
-    .podcast-side-col {
-      background: var(--orange);
-      padding: 3rem 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .podcast-side-col::after {
-      content: 'AUDIO';
-      position: absolute;
-      bottom: -20px;
-      right: -30px;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 130px;
-      color: rgba(0, 0, 0, .12);
-      letter-spacing: -5px;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .podcast-eyebrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .65);
-    }
-
-    .podcast-big-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(52px, 5vw, 80px);
-      color: #fff;
-      line-height: .92;
-      letter-spacing: 1px;
-    }
-
-    .podcast-big-title span {
-      color: var(--dark);
-    }
-
-    .podcast-side-desc {
-      font-size: 14px;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, .75);
-    }
-
-    .podcast-platform-links {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 15px;
-      align-items: center;
-      margin-top: auto;
-    }
-
-    .platform-logo-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 14px;
-      width: 60px;
-      height: 60px;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      text-decoration: none;
-    }
-
-    .platform-logo-link:hover {
-      transform: translateY(-4px) scale(1.05);
-      border-color: var(--orange);
-      box-shadow: 0 10px 20px rgba(255, 69, 0, 0.2);
-      background: rgba(255, 255, 255, 0.05);
-    }
-    
-    .platform-logo-link:active {
-      transform: translateY(0) scale(0.95);
-      box-shadow: 0 2px 5px rgba(255, 69, 0, 0.1);
-    }
-
-    .platform-btn-v:hover {
-      background: rgba(0, 0, 0, .4);
-      border-color: rgba(255, 255, 255, .5);
-      color: #fff;
-    }
-
-    .podcast-main-col {
-      padding: 3rem 3rem 2rem;
-    }
-
-    @media(max-width:575px) {
-      .podcast-main-col {
-        padding: 2rem 1.25rem;
-      }
-    }
-
-    /* Episode cards */
     .ep-card {
-      background: rgba(248, 250, 252, .04);
-      border: 1px solid rgba(248, 250, 252, .07);
+      background: rgba(255, 248, 231, .04);
+      border: 1px solid rgba(255, 248, 231, .08);
       padding: 1rem 1.25rem;
       display: flex;
       align-items: center;
@@ -945,27 +798,11 @@
       text-decoration: none;
       transition: background .2s, border-color .2s;
       cursor: pointer;
-      animation: epSlide .4s ease both;
-    }
-
-    @keyframes epSlide {
-      from {
-        opacity: 0;
-        transform: translateX(-18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
     }
 
     .ep-card:hover {
-      background: rgba(6, 182, 212, .08);
-      border-color: rgba(6, 182, 212, .3);
-    }
-
-    .ep-card:hover .ep-play {
-      transform: scale(1.15) rotate(12deg);
+      background: rgba(245, 194, 0, .08);
+      border-color: rgba(245, 194, 0, .3);
     }
 
     .ep-num {
@@ -977,15 +814,14 @@
     }
 
     .ep-play {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       background: var(--yellow);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: transform .25s cubic-bezier(.22, 1, .36, 1);
     }
 
     .ep-play svg {
@@ -998,9 +834,9 @@
     }
 
     .ep-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--white);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--cream);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -1008,14 +844,72 @@
     }
 
     .ep-date {
-      font-size: 10px;
-      color: rgba(248, 250, 252, .35);
+      font-size: 11px;
+      color: rgba(255, 248, 231, .35);
+    }
+
+    .ep-tag-pill {
+      background: rgba(255, 107, 0, 0.15);
+      color: var(--orange-light);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .platform-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 248, 231, .06);
+      color: var(--cream);
+      padding: 9px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid rgba(255, 248, 231, .12);
+      transition: background .2s, border-color .2s;
+      letter-spacing: .5px;
+      white-space: nowrap;
+    }
+
+    .platform-btn:hover {
+      background: rgba(245, 194, 0, .15);
+      border-color: var(--yellow);
+      color: var(--yellow);
+    }
+
+    .show-more-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: rgba(255, 248, 231, .05);
+      border: 1px solid rgba(255, 248, 231, .1);
+      color: rgba(255, 248, 231, .5);
+      padding: 12px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      margin-top: 0;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+
+    .show-more-btn:hover {
+      background: rgba(245, 194, 0, .1);
+      color: var(--yellow);
+      border-color: rgba(245, 194, 0, .3);
     }
 
     .ep-hidden-wrapper {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows .4s cubic-bezier(.4, 0, .2, 1);
+      transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .ep-hidden-wrapper>.ep-hidden-inner {
@@ -1026,121 +920,72 @@
       grid-template-rows: 1fr;
     }
 
-    .show-more-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      background: rgba(248, 250, 252, .04);
-      border: 1px solid rgba(248, 250, 252, .08);
-      color: rgba(248, 250, 252, .45);
-      padding: 12px;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 17px;
-      letter-spacing: 2px;
-      cursor: pointer;
-      margin-top: .5rem;
-      transition: background .2s, color .2s, border-color .2s;
-    }
-
-    .show-more-btn:hover {
-      background: rgba(6, 182, 212, .1);
-      color: var(--yellow);
-      border-color: rgba(6, 182, 212, .3);
-    }
-
-    /* ── CONTENT HUB — HORIZONTAL STRIP ── */
+    /* ── CONTENT HUB SECTION ── */
     #content {
-      background-image: url('./img/mha.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      position: relative;
+      background: #000;
     }
 
-    #content::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(11, 15, 25, .82);
-      z-index: 0;
-    }
-
-    .content-inner {
-      position: relative;
-      z-index: 1;
-      padding: 4rem 0 3.5rem;
-    }
-
-    .content-header-row {
+    #content .section-header-row {
+      border-bottom: 1px solid rgba(255, 107, 0, 0.25);
+      padding-bottom: 1.25rem;
+      margin-bottom: 2.5rem;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
-      padding: 0 4vw 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, .07);
     }
 
-    /* Platform cards horizontal strip */
-    .platforms-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    /* Editorial category label strip — NatGeo-inspired */
+    .content-category-strip {
+      display: flex;
       gap: 0;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    @media(max-width:767px) {
-      .platforms-strip {
-        grid-template-columns: 1fr;
-      }
+    .content-category-strip a {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(232,232,232,0.45);
+      text-decoration: none;
+      padding: 10px 18px;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+      white-space: nowrap;
     }
 
-    .platform-card {
-      padding: 2rem 2.5rem;
-      border-right: 1px solid rgba(255, 255, 255, .07);
+    .content-category-strip a:hover,
+    .content-category-strip a.active {
+      color: var(--orange);
+      border-bottom-color: var(--orange);
+    }
+      background: #111111;
+      border: 1px solid rgba(255, 107, 0, 0.15);
+      padding: 1.75rem;
+      transition: border-color .2s, transform .2s;
       text-decoration: none;
       display: block;
-      transition: background .2s;
-      position: relative;
-      overflow: hidden;
-      height: auto;
-      background: transparent;
-    }
-
-    .platform-card:last-child {
-      border-right: none;
-    }
-
-    .platform-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--orange);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .3s ease;
-    }
-
-    .platform-card:hover::before {
-      transform: scaleX(1);
+      height: 100%;
     }
 
     .platform-card:hover {
-      background: rgba(99, 102, 241, .07);
+      border-color: var(--orange);
+      transform: translateY(-4px);
     }
 
     .platform-icon {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: .85rem;
+      margin-bottom: .9rem;
     }
 
     .platform-icon.yt {
@@ -1157,33 +1002,32 @@
 
     .platform-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      color: #fff;
+      font-size: 24px;
+      color: #ffffff;
       letter-spacing: 1px;
-      margin-bottom: .15rem;
+      margin-bottom: .2rem;
     }
 
     .platform-handle {
       font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      color: var(--yellow);
+      font-size: 10px;
+      color: var(--orange);
       font-weight: 700;
-      margin-bottom: .55rem;
-      letter-spacing: 1px;
+      margin-bottom: .6rem;
     }
 
     .platform-desc {
       font-size: 13px;
       line-height: 1.6;
-      color: rgba(248, 250, 252, .55);
-      margin-bottom: .85rem;
+      color: rgba(232, 232, 232, 0.55);
+      margin-bottom: 1rem;
     }
 
     .platform-freq {
       display: inline-block;
       background: var(--orange);
       color: #fff;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -1201,7 +1045,7 @@
 
     .community-card {
       background: rgba(255, 255, 255, .03);
-      border: 2px solid rgba(255, 255, 255, .07);
+      border: 2px solid rgba(255, 248, 231, .07);
       padding: 2rem;
       transition: border-color .2s;
       height: 100%;
@@ -1226,7 +1070,7 @@
     .community-card-desc {
       font-size: 13px;
       line-height: 1.6;
-      color: rgba(255, 255, 255, .5);
+      color: rgba(255, 248, 231, .5);
       margin-bottom: 1.25rem;
     }
 
@@ -1282,7 +1126,7 @@
     .host-name {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 20px;
-      color: var(--dark);
+      color: #ffffff;
       letter-spacing: 1px;
     }
 
@@ -1309,7 +1153,7 @@
     }
 
     .about-story-text {
-      color: rgba(255, 255, 255, .7);
+      color: rgba(255, 248, 231, .7);
       font-size: 14px;
       line-height: 1.8;
     }
@@ -1340,7 +1184,7 @@
     .footer-brand-text {
       font-size: 12px;
       line-height: 1.7;
-      color: rgba(255, 255, 255, .4);
+      color: rgba(255, 248, 231, .4);
       max-width: 260px;
     }
 
@@ -1361,7 +1205,7 @@
     }
 
     .footer-col ul li a {
-      color: rgba(255, 255, 255, .4);
+      color: rgba(255, 248, 231, .4);
       text-decoration: none;
       font-size: 12px;
       font-weight: 600;
@@ -1373,13 +1217,13 @@
     }
 
     .footer-divider {
-      border-color: rgba(255, 255, 255, .08);
+      border-color: rgba(255, 248, 231, .08);
       margin: 1.5rem 0 1rem;
     }
 
     .footer-copy {
       font-size: 11px;
-      color: rgba(255, 255, 255, .25);
+      color: rgba(255, 248, 231, .25);
       font-weight: 600;
     }
 
@@ -1390,11 +1234,11 @@
     .social-link {
       width: 34px;
       height: 34px;
-      border: 1px solid rgba(255, 255, 255, .14);
+      border: 1px solid rgba(255, 248, 231, .14);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255, 255, 255, .38);
+      color: rgba(255, 248, 231, .38);
       text-decoration: none;
       font-size: 15px;
       border-radius: 4px;
@@ -1465,7 +1309,45 @@
       pointer-events: none;
     }
 
-    /* Legacy nav styles removed */
+    /* Nav scroll shrink */
+    nav.scrolled {
+      height: 52px;
+      border-bottom-width: 2px;
+      transition: height .3s ease, border-bottom-width .3s ease;
+    }
+
+    nav {
+      transition: height .3s ease;
+    }
+
+    /* Logo pulse on hover */
+    .nav-logo .logo-box {
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .nav-logo:hover .logo-box {
+      transform: skewX(-4deg) scale(1.05);
+    }
+
+    /* Nav link underline sweep */
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--yellow);
+      transition: width .25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
     /* Hero tag bounce in */
     @keyframes slideDown {
@@ -1681,7 +1563,7 @@
     .platform-card:hover {
       border-color: var(--orange);
       transform: translateY(-6px);
-      box-shadow: 0 12px 32px rgba(99, 102, 241, 0.08);
+      box-shadow: 0 12px 32px rgba(255, 107, 0, 0.12);
     }
 
     /* Platform icon wobble */
@@ -1891,10 +1773,10 @@
       background-position: center;
     }
 
-    /* Overlay — blue-tinted for Discord, dark-orange for Merch */
+    /* Overlay — dark for Discord, dark-orange for Merch */
     .discord-overlay {
       position: relative;
-      background: linear-gradient(135deg, rgba(11, 15, 25, 0.85) 0%, rgba(88, 101, 242, 0.3) 100%);
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.88) 0%, rgba(88, 101, 242, 0.2) 100%);
       display: flex;
       align-items: center;
       width: 100%;
@@ -1902,7 +1784,7 @@
 
     .merch-overlay {
       position: relative;
-      background: linear-gradient(135deg, rgba(11, 15, 25, 0.82) 0%, rgba(99, 102, 241, 0.25) 100%);
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(255, 107, 0, 0.18) 100%);
       display: flex;
       align-items: center;
       width: 100%;
@@ -1939,7 +1821,7 @@
     .panel-desc {
       font-size: 15px;
       line-height: 1.7;
-      color: rgba(255, 255, 255, .7);
+      color: rgba(255, 248, 231, .7);
       max-width: 480px;
       margin: 0;
     }
@@ -2046,7 +1928,7 @@
     .merch-tagline {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(18px, 2.5vw, 26px);
-      color: rgba(255, 255, 255, .75);
+      color: rgba(255, 248, 231, .75);
       letter-spacing: 2px;
       margin: 0;
     }
@@ -2097,66 +1979,24 @@
 
       /* Use dragonball2.jpg for mobile */
       .site-footer {
-        background-color: var(--dark) !important;
+        background-image: linear-gradient(to bottom, rgba(11, 15, 25, 0.728) 0%, rgba(11, 15, 25, 1) 100%), url('./img/dragonball2.jpg') !important;
+        background-size: cover !important;
+        background-position: center bottom !important;
       }
     }
 
     .site-footer {
-      background-color: var(--dark);
+      background-image: linear-gradient(to bottom, rgba(11, 15, 25, 0.728) 0%, rgba(11, 15, 25, 1) 100%), url('./img/dbs.jpg');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      background-color: #0b0f19;
     }
 
-    /* ── SUGGESTION BOX ── */
-    #suggestion {
-      padding: 5rem 0;
-      background-color: var(--dark);
-    }
-
-    .suggestion-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    @media(max-width:767px) {
-      .suggestion-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-    }
-
-    .suggestion-left {}
-    .suggestion-right {}
-
-    .form-field-lbl {
-      display: block;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(248, 250, 252, 0.42);
-      margin-bottom: .4rem;
-    }
-
-    .form-input {
-      width: 100%;
-      background: rgba(248, 250, 252, 0.04);
-      border: 1px solid rgba(248, 250, 252, 0.1);
-      color: var(--white);
-      padding: 11px 15px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 14px;
-      outline: none;
-      transition: border-color .2s;
-      border-radius: 2px;
-    }
-
-    .form-input:focus {
-      border-color: var(--orange);
-    }
-
-    textarea.form-input {
-      resize: vertical;
+    /* Text selection */
+    ::selection {
+      background: var(--orange);
+      color: #fff;
     }
   </style>
   <link rel="icon" type="image/png" href="./img/logo.png">
@@ -2190,22 +2030,22 @@
     style="position:fixed;top:64px;left:0;right:0;z-index:199;background:var(--dark);border-bottom:2px solid var(--orange);padding:1rem 1.5rem;">
     <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.75rem;">
       <li><a href="#events"
-          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">Events</a></li>
       <li><a href="#podcast"
-          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">Podcast</a></li>
       <li><a href="#content"
-          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">Content</a></li>
       <li><a href="#community"
-          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">Community</a></li>
       <li><a href="#about"
-          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">About</a></li>
       <li><a href="gallery.html"
-          style="color:var(--white);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
+          style="color:var(--cream);text-decoration:none;font-weight:700;letter-spacing:1px;font-size:14px;"
           onclick="document.getElementById('mobileMenu').classList.remove('show')">Gallery</a></li>
     </ul>
   </div>
@@ -2216,7 +2056,7 @@
   style="background-image: url('your-image.jpg')" on the #home div
 -->
   <div id="home"
-    style="position: relative;">
+    style="background-image: url('./img/anime.jpg'); background-size: cover; background-position: center; position: relative;">
     <canvas id="hero-canvas"></canvas>
     <div class="hero-overlay">
       <div class="container-xl px-3 px-md-4 py-5" style="margin-top:0;">
@@ -2357,6 +2197,7 @@
 
               <!-- Dots (built by JS) -->
               <div class="slideshow-dots" id="slideshowDots"></div>
+              <div class="slideshow-progress" id="slideshowProgress"></div>
 
             </div>
           </div>
@@ -2480,72 +2321,96 @@
   BG IMAGE: Add to the div below:
   style="background-image: url('your-podcast-bg.jpg'); background-size:cover; background-position:center;"
 -->
-  <div id="podcast">
-    <!-- LEFT: Accent column -->
-    <div class="podcast-side-col">
-      <span class="podcast-eyebrow">Audio Series</span>
-      <h2 class="podcast-big-title">The<br><span>Pod</span><br>Cast</h2>
-      <p class="podcast-side-desc">Deep dives into anime, culture, community, and everything in between. New episodes monthly.</p>
-      <div class="podcast-platform-links mt-auto">
-        <a href="https://podcasts.apple.com/ug/podcast/what-about-anime/id1795232338" target="_blank" class="platform-logo-link" title="Apple Podcasts">
-          <i class="fa-solid fa-podcast" style="color: #b574ff; font-size: 32px; transition: transform 0.3s ease;"></i>
-        </a>
-        <a href="https://open.spotify.com/show/70QIxraF3psvOaiN4sQ9C6?utm_medium=share&utm_source=linktree" target="_blank" class="platform-logo-link" title="Spotify">
-          <i class="fa-brands fa-spotify" style="color: #1DB954; font-size: 34px; transition: transform 0.3s ease;"></i>
-        </a>
-      </div>
-    </div>
+  <div id="podcast" class="py-5">
+    <div class="podcast-overlay" style="padding:3rem 0;">
+      <div class="container-xl px-3 px-md-4">
+        <div class="row align-items-end mb-4">
+          <div class="col-12 col-md-7">
+            <span class="section-tag light">Audio Series</span>
+            <h2 class="section-title light">The <span class="accent-y">Podcast</span></h2>
+            <p class="section-desc light">Deep dives into anime, culture, community, and everything in between.</p>
+          </div>
+          <div class="col-12 col-md-5 d-flex gap-2 justify-content-md-end flex-wrap mt-3 mt-md-0">
+            <a href="https://podcasts.apple.com/ug/podcast/what-about-anime/id1795232338" target="_blank"
+              class="platform-btn">🎵 Apple Podcasts</a>
+            <a href="https://open.spotify.com/show/70QIxraF3psvOaiN4sQ9C6?utm_medium=share&utm_source=linktree"
+              target="_blank" class="platform-btn">🎧 Spotify</a>
+          </div>
+        </div>
 
-    <!-- RIGHT: Episodes list -->
-    <div class="podcast-main-col">
-      <div class="d-flex flex-column gap-2" id="episodes-list">
-        <div style="text-align:center;padding:2rem;color:rgba(248,250,252,.3);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">Loading Episodes...</div>
+        <!-- Episodes list — populated by JS from RSS -->
+        <div class="d-flex flex-column gap-2" id="episodes-list">
+          <div
+            style="text-align:center;padding:2rem;color:rgba(255,248,231,.3);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;">
+            Loading Episodes...</div>
+        </div>
+
+        <!-- Show more button -->
+        <button class="show-more-btn mt-3" id="show-more-btn" style="display:none;" onclick="toggleEpisodes()">
+          <span id="show-more-text">Show All Episodes</span>
+          <span id="show-more-arrow">▼</span>
+        </button>
       </div>
-      <button class="show-more-btn mt-3" id="show-more-btn" style="display:none;" onclick="toggleEpisodes()">
-        <span id="show-more-text">Show All Episodes</span>
-        <span id="show-more-arrow">▼</span>
-      </button>
     </div>
   </div>
 
   <!-- ═══════════════════════════════ CONTENT HUB ═══════════════════════════════ -->
   <div class="divider-o"></div>
 
-  <div id="content">
-    <div class="content-inner">
-      <div class="content-header-row">
-        <div>
-          <span class="section-tag light">Where to Find Us</span>
-          <h2 class="section-title light">Our Content <span class="accent">Hub</span></h2>
+  <div id="content" class="py-5">
+    <div class="container-xl px-3 px-md-4">
+      <div class="row align-items-end mb-0">
+        <div class="col-12">
+          <span class="section-tag">Where to Find Us</span>
+          <h2 class="section-title">Our Content <span class="accent">Hub</span></h2>
+          <p class="section-desc mb-0">We're everywhere anime lives. Follow us across platforms for the full experience.</p>
         </div>
-        <p class="section-desc light" style="max-width:360px;">We're everywhere anime lives. Follow us across platforms for the full experience.</p>
       </div>
-      <div class="platforms-strip fade-in">
-
-        <a href="https://www.youtube.com/@whataboutanimeee" target="_blank" class="platform-card">
-          <div class="platform-icon yt"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-          <div class="platform-name">YouTube</div>
-          <div class="platform-handle">@whataboutanime</div>
-          <div class="platform-desc">Full episodes, clips, and anime content drops weekly.</div>
-          <div class="platform-freq">Weekly</div>
-        </a>
-
-        <a href="https://www.tiktok.com/@whataboutanimee?lang=en" target="_blank" class="platform-card">
-          <div class="platform-icon tt"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.54V6.78a4.85 4.85 0 01-1.07-.09z"/></svg></div>
-          <div class="platform-name">TikTok</div>
-          <div class="platform-handle">@whataboutanimee</div>
-          <div class="platform-desc">Hot takes, anime edits, and quick-fire reactions daily.</div>
-          <div class="platform-freq">Daily</div>
-        </a>
-
-        <a href="https://www.instagram.com/whataboutanimee/" target="_blank" class="platform-card">
-          <div class="platform-icon ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
-          <div class="platform-name">Instagram</div>
-          <div class="platform-handle">@whataboutanimee</div>
-          <div class="platform-desc">Behind the scenes, polls, community updates and event announcements.</div>
-          <div class="platform-freq">Weekly</div>
-        </a>
-
+      <!-- Category strip — editorial nav inspired by NatGeo/Sentinels -->
+      <div class="content-category-strip mt-4">
+        <a href="https://www.youtube.com/@whataboutanimeee" target="_blank" class="active">YouTube</a>
+        <a href="https://www.tiktok.com/@whataboutanimee?lang=en" target="_blank">TikTok</a>
+        <a href="https://www.instagram.com/whataboutanimee/" target="_blank">Instagram</a>
+        <a href="https://podcasts.apple.com/ug/podcast/what-about-anime/id1795232338" target="_blank">Apple Podcasts</a>
+        <a href="https://open.spotify.com/show/70QIxraF3psvOaiN4sQ9C6" target="_blank">Spotify</a>
+      </div>
+      <div class="row g-3 fade-in">
+        <div class="col-12 col-md-4">
+          <a href="https://www.youtube.com/@whataboutanimeee" target="_blank" class="platform-card">
+            <div class="platform-icon yt"><svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg></div>
+            <div class="platform-name">YouTube</div>
+            <div class="platform-handle">@whataboutanime</div>
+            <div class="platform-desc">Full episodes, clips, and anime content drops weekly.</div>
+            <div class="platform-freq">Weekly</div>
+          </a>
+        </div>
+        <div class="col-12 col-md-4">
+          <a href="https://www.tiktok.com/@whataboutanimee?lang=en" target="_blank" class="platform-card">
+            <div class="platform-icon tt"><svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.54V6.78a4.85 4.85 0 01-1.07-.09z" />
+              </svg></div>
+            <div class="platform-name">TikTok</div>
+            <div class="platform-handle">@whataboutanimee</div>
+            <div class="platform-desc">Hot takes, anime edits, and quick-fire reactions daily.</div>
+            <div class="platform-freq">Daily</div>
+          </a>
+        </div>
+        <div class="col-12 col-md-4">
+          <a href="https://www.instagram.com/whataboutanimee/" target="_blank" class="platform-card">
+            <div class="platform-icon ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg></div>
+            <div class="platform-name">Instagram</div>
+            <div class="platform-handle">@whataboutanimee</div>
+            <div class="platform-desc">Behind the scenes, polls, community updates and event announcements.</div>
+            <div class="platform-freq">Weekly</div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -2695,52 +2560,76 @@
 
   <!-- ═══════════════════════════════ SUGGESTION BOX ═══════════════════════════════ -->
   <div class="divider-y"></div>
-  <div id="suggestion">
+  <div id="suggestion" class="py-5"
+    style="background-image: linear-gradient(rgba(11, 15, 25, 0.85), rgba(11, 15, 25, 0.95)), url('./img/sg.jpeg'); background-size: cover; background-position: center top;">
     <div class="container-xl px-3 px-md-4">
-      <div class="suggestion-grid">
-
-        <div class="suggestion-left">
+      <div class="row align-items-center mb-5">
+        <div class="col-12 col-md-8">
           <span class="section-tag light">Your Voice</span>
           <h2 class="section-title light">What About <span class="accent-y">It?</span></h2>
-          <p class="section-desc light" style="margin-bottom:1.5rem;">Got an idea for an event? An anime we should screen? Something you want to see at Anime Night? Tell us. We're actually listening.</p>
+          <p class="section-desc light">Got an idea for an event? An anime we should screen? Something you want to see
+            at Anime Night? Tell us. We're actually listening.</p>
         </div>
-
-        <div class="suggestion-right">
-          <form action="https://formspree.io/f/xrbqjrlg" method="POST" style="display:flex;flex-direction:column;gap:1.15rem;">
-            <div>
-              <label class="form-field-lbl">Your Name</label>
-              <input type="text" name="name" placeholder="What do we call you?" required class="form-input">
-            </div>
-            <div>
-              <label class="form-field-lbl">Category</label>
-              <select name="category" required class="form-input" style="appearance:none;">
-                <option value="" style="background:var(--dark);">Select a category...</option>
-                <option value="anime-to-screen" style="background:var(--dark);">Anime to Screen</option>
-                <option value="event-idea" style="background:var(--dark);">Event Idea</option>
-                <option value="anime-night-activity" style="background:var(--dark);">Anime Night Activity</option>
-                <option value="artist-alley" style="background:var(--dark);">Artist Alley / Vendor Inquiry</option>
-                <option value="collab" style="background:var(--dark);">Collaboration Idea</option>
-                <option value="general" style="background:var(--dark);">General Suggestion</option>
-              </select>
-            </div>
-            <div>
-              <label class="form-field-lbl">Your Suggestion</label>
-              <textarea name="suggestion" rows="5" placeholder="What's your idea? Be as detailed as you want..." required class="form-input"></textarea>
-            </div>
-            <div>
-              <label class="form-field-lbl">Email <span style="font-size:10px;opacity:.5;">(optional)</span></label>
-              <input type="email" name="email" placeholder="So we can get back to you if needed" class="form-input">
-            </div>
-            <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
-              <button type="submit" class="btn-primary-waa" style="cursor:pointer;font-size:18px;">Submit Suggestion →</button>
-              <p style="font-size:11px;color:rgba(248, 250, 252, 0.5);margin:0;font-family:'Space Mono',monospace;">Powered by Formspree · Goes straight to the team.</p>
-            </div>
-          </form>
-        </div>
-
       </div>
-    </div>
-  </div>
+
+      <div class="suggestion-wrap fade-in" style="max-width:680px;">
+        <form action="https://formspree.io/f/xrbqjrlg" method="POST"
+          style="display:flex;flex-direction:column;gap:1.25rem;">
+
+          <div>
+            <label
+              style="display:block;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,248,231,.45);margin-bottom:.4rem;">Your
+              Name</label>
+            <input type="text" name="name" placeholder="What do we call you?" required
+              style="width:100%;background:rgba(255,248,231,.04);border:1px solid rgba(255,248,231,.12);color:var(--cream);padding:12px 16px;font-family:'Nunito',sans-serif;font-size:14px;outline:none;transition:border-color .2s;border-radius:2px;"
+              onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='rgba(255,248,231,.12)'">
+          </div>
+
+          <div>
+            <label
+              style="display:block;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,248,231,.45);margin-bottom:.4rem;">Category</label>
+            <select name="category" required
+              style="width:100%;background:rgba(255,248,231,.04);border:1px solid rgba(255,248,231,.12);color:var(--cream);padding:12px 16px;font-family:'Nunito',sans-serif;font-size:14px;outline:none;transition:border-color .2s;appearance:none;border-radius:2px;"
+              onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='rgba(255,248,231,.12)'">
+              <option value="" style="background:var(--dark);">Select a category...</option>
+              <option value="anime-to-screen" style="background:var(--dark);">Anime to Screen</option>
+              <option value="event-idea" style="background:var(--dark);">Event Idea</option>
+              <option value="anime-night-activity" style="background:var(--dark);">Anime Night Activity</option>
+              <option value="artist-alley" style="background:var(--dark);">Artist Alley / Vendor Inquiry</option>
+              <option value="collab" style="background:var(--dark);">Collaboration Idea</option>
+              <option value="general" style="background:var(--dark);">General Suggestion</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style="display:block;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,248,231,.45);margin-bottom:.4rem;">Your
+              Suggestion</label>
+            <textarea name="suggestion" rows="5" placeholder="What's your idea? Be as detailed as you want..." required
+              style="width:100%;background:rgba(255,248,231,.04);border:1px solid rgba(255,248,231,.12);color:var(--cream);padding:12px 16px;font-family:'Nunito',sans-serif;font-size:14px;outline:none;transition:border-color .2s;resize:vertical;border-radius:2px;"
+              onfocus="this.style.borderColor='var(--orange)'"
+              onblur="this.style.borderColor='rgba(255,248,231,.12)'"></textarea>
+          </div>
+
+          <div>
+            <label
+              style="display:block;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,248,231,.45);margin-bottom:.4rem;">Email
+              <span style="font-size:10px;opacity:.5;">(optional)</span></label>
+            <input type="email" name="email" placeholder="So we can get back to you if needed"
+              style="width:100%;background:rgba(255,248,231,.04);border:1px solid rgba(255,248,231,.12);color:var(--cream);padding:12px 16px;font-family:'Nunito',sans-serif;font-size:14px;outline:none;transition:border-color .2s;border-radius:2px;"
+              onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='rgba(255,248,231,.12)'">
+          </div>
+
+          <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+            <button type="submit" class="btn-primary-waa" style="cursor:pointer;font-size:18px;">
+              Submit Suggestion →
+            </button>
+            <p style="font-size:11px;color:rgba(255, 248, 231, 0.996);margin:0;font-family:'Space Mono',monospace;">
+              Powered by Formspree · Goes straight to the team.</p>
+          </div>
+
+        </form>
+      </div>
     </div>
   </div>
 
@@ -2973,7 +2862,7 @@
           this.vx = rand(-0.3, 0.3);
           this.vy = rand(-0.5, -0.12);
           this.alpha = rand(0.06, 0.22);
-          this.color = Math.random() > 0.6 ? '#6366F1' : '#06B6D4';
+          this.color = Math.random() > 0.6 ? '#FF6B00' : '#FF8C33';
         }
         update() {
           this.x += this.vx;
