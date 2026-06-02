@@ -7,6 +7,7 @@
   <title>What About Anime</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
@@ -23,6 +24,7 @@
       --dark-mid: #111111;
       --text-body: rgba(255, 255, 255, 0.7);
       --white: #FFFFFF;
+      --blue: #007BFF;
     }
 
     * {
@@ -550,6 +552,10 @@
       color: var(--orange);
     }
 
+    .section-title .accent-b {
+      color: var(--blue);
+    }
+
     .section-title .accent-y {
       color: var(--yellow);
     }
@@ -834,7 +840,7 @@
     }
 
     .podcast-side-col {
-      background: var(--orange);
+      background: var(--blue);
       padding: 3rem 2rem;
       display: flex;
       flex-direction: column;
@@ -918,10 +924,10 @@
       box-shadow: 0 2px 5px rgba(255, 69, 0, 0.1);
     }
 
-    .platform-btn-v:hover {
-      background: rgba(0, 0, 0, .4);
-      border-color: rgba(255, 255, 255, .5);
-      color: #fff;
+    .platform-btn:hover {
+      background: rgba(0, 123, 255, .15);
+      border-color: var(--blue);
+      color: var(--blue);
     }
 
     .podcast-main-col {
@@ -960,8 +966,8 @@
     }
 
     .ep-card:hover {
-      background: rgba(6, 182, 212, .08);
-      border-color: rgba(6, 182, 212, .3);
+      background: rgba(0, 123, 255, .08);
+      border-color: rgba(0, 123, 255, .3);
     }
 
     .ep-card:hover .ep-play {
@@ -977,9 +983,9 @@
     }
 
     .ep-play {
-      width: 40px;
-      height: 40px;
-      background: var(--yellow);
+      width: 42px;
+      height: 42px;
+      background: var(--blue);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -1045,9 +1051,9 @@
     }
 
     .show-more-btn:hover {
-      background: rgba(6, 182, 212, .1);
-      color: var(--yellow);
-      border-color: rgba(6, 182, 212, .3);
+      background: rgba(0, 123, 255, .1);
+      color: var(--blue);
+      border-color: rgba(0, 123, 255, .3);
     }
 
     /* ── CONTENT HUB — HORIZONTAL STRIP ── */
@@ -1086,7 +1092,7 @@
     /* Platform cards horizontal strip */
     .platforms-strip {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 0;
     }
 
@@ -1894,7 +1900,7 @@
     /* Overlay — blue-tinted for Discord, dark-orange for Merch */
     .discord-overlay {
       position: relative;
-      background: linear-gradient(135deg, rgba(11, 15, 25, 0.85) 0%, rgba(88, 101, 242, 0.3) 100%);
+      background: linear-gradient(135deg, rgba(11, 15, 25, 0.85) 0%, rgba(104, 65, 242, 0.3) 100%);
       display: flex;
       align-items: center;
       width: 100%;
@@ -1962,7 +1968,7 @@
     .discord-icon-fallback {
       width: 80px;
       height: 80px;
-      background: #5865F2;
+      background: #6841f2;
       border-radius: 20px;
       display: flex;
       align-items: center;
@@ -2002,16 +2008,16 @@
       transform: translateY(-3px);
     }
 
-    /* Discord button — indigo */
+    /* Discord button — purple */
     .btn-discord {
-      background: #5865F2;
+      background: #6841f2;
       color: #fff;
     }
 
     .btn-discord:hover {
-      background: #6b77f7;
+      background: #7a54f4;
       color: #fff;
-      box-shadow: 0 8px 28px rgba(88, 101, 242, .4);
+      box-shadow: 0 8px 28px rgba(104, 65, 242, .4);
     }
 
     /* Merch button — yellow */
@@ -2215,155 +2221,121 @@
   BG IMAGE: Add your hero background image by setting:
   style="background-image: url('your-image.jpg')" on the #home div
 -->
-  <div id="home"
-    style="position: relative;">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-overlay">
-      <div class="container-xl px-3 px-md-4 py-5" style="margin-top:0;">
-        <div class="row align-items-center g-4 g-lg-5">
-
-          <!-- LEFT: Info -->
-          <div class="col-12 col-lg-7 order-1 order-lg-1">
-            <img src="img/whatabout.png" alt="What About Anime" class="img-fluid mb-4"
-              style="max-width:420px; width:100%;">
-            <p class="hero-desc">East Africa's home for anime culture. <strong>Podcast. Events. Reviews. Hot Takes.
-                Community.</strong> Hosted by Waboi, Keith, Dekk &amp; Nissi.</p>
-            <div class="d-flex gap-3 flex-wrap">
-              <a href="#podcast" class="btn-primary-waa">Listen Now</a>
-              <a href="#events" class="btn-outline-waa">Upcoming Events</a>
-            </div>
-          </div>
-
-          <!-- RIGHT: Polaroid Slideshow -->
-          <div class="col-12 col-lg-5 order-2 order-lg-2" style="position:relative;">
-            <div class="hero-slideshow-wrap w-100" id="heroSlideshow">
-
-              <div class="slideshow-label">Welcome</div>
-              <div class="slideshow-counter" id="slideshowCounter">1 / 3</div>
-
-              <!--
-              ═══════════════════════════════════════════════════════
-              POLAROID SLIDESHOW — HOW TO ADD YOUR IMAGES
-              
-              Each .polaroid-scene = one slide (shows multiple Polaroids at once)
-              Each .polaroid card has:
-                - style="width:Xpx; height:Ypx; --p-transform: rotate(Zdeg) translate(Ax,Ay); z-index:N; animation-delay:.Xs"
-                - The --p-transform controls position + rotation of each card
-                - Put your photo in the <img src="..."> inside each .polaroid
-              
-              To add more photos per scene, duplicate a .polaroid block.
-              To add more scenes, duplicate a .polaroid-scene block.
-              ═══════════════════════════════════════════════════════
-            -->
-
-              <!-- ── SCENE 1 ── -->
-              <div class="polaroid-scene active">
-
-                <!-- Big card top-right -->
-                <div class="polaroid" style="
-                width: 58%; height: 48%;
-                top: 4%; right: 4%;
-                --p-transform: rotate(1deg);
-                transform: var(--p-transform);
-                z-index: 3; animation-delay: 0s;
-              "><img src="./img/new/feb264.jpg" class="polaroid-img" alt="WAA"
-                    onerror="this.style.background='#161D30'"></div>
-
-                <!-- Centre-left card -->
-                <div class="polaroid" style="
-                width: 60%; height: 50%;
-                top: 30%; left: 4%;
-                --p-transform: rotate(-1deg);
-                transform: var(--p-transform);
-                z-index: 4; animation-delay: .1s;
-              "><img src="./img/new/feb2612.jpg" class="polaroid-img" alt="WAA"
-                    onerror="this.style.background='#1F2937'"></div>
-
-                <!-- Bottom right accent -->
-                <div class="polaroid accent-o" style="
-                width: 52%; height: 40%;
-                bottom: 4%; right: 6%;
-                --p-transform: rotate(0.5deg);
-                transform: var(--p-transform);
-                z-index: 5; animation-delay: .18s;
-              "><img src="./img/new/feb268.jpg" class="polaroid-img" alt="WAA"
-                    onerror="this.style.background='#0B0F19'"></div>
-
-              </div>
-
-              <!-- ── SCENE 2 ── -->
-              <div class="polaroid-scene">
-
-                <div class="polaroid" style="
-                width: 58%; height: 48%;
-                top: 4%; left: 4%;
-                --p-transform: rotate(-1deg);
-                transform: var(--p-transform);
-                z-index: 3; animation-delay: 0s;
-              "><img src="./img/gallery/s2-a.jpg" class="polaroid-img" alt="WAA"
-                    onerror="this.style.background='#0B0F19'"></div>
-
-                <div class="polaroid accent-y" style="
-                width: 56%; height: 46%;
-                top: 28%; right: 4%;
-                --p-transform: rotate(1.2deg);
-                transform: var(--p-transform);
-                z-index: 4; animation-delay: .1s;
-              "><img src="./img/gallery/s2-b.jpg" class="polaroid-img" alt="WAA"
-                    onerror="this.style.background='#1F2937'"></div>
-
-                <div class="polaroid" style="
-                width: 62%; height: 44%;
-                bottom: 4%; left: 8%;
-                --p-transform: rotate(0.8deg);
-                transform: var(--p-transform);
-                z-index: 5; animation-delay: .18s;
-              "><img src="./img/gallery/s2-c.jpg" class="polaroid-img" alt="WAA"
-                    onerror="this.style.background='#161D30'"></div>
-
-              </div>
-
-              <!-- ── SCENE 3 ── -->
-              <div class="polaroid-scene">
-
-                <div class="polaroid accent-o" style="
-                width: 56%; height: 46%;
-                top: 4%; right: 5%;
-                --p-transform: rotate(1deg);
-                transform: var(--p-transform);
-                z-index: 2; animation-delay: 0s;
-              "><img src="./img/gallery/s3-a.jpg" class="polaroid-img" alt="WAA"
-                    onerror="this.style.background='#161D30'"></div>
-
-                <div class="polaroid" style="
-                width: 64%; height: 52%;
-                top: 26%; left: 4%;
-                --p-transform: rotate(-1.2deg);
-                transform: var(--p-transform);
-                z-index: 4; animation-delay: .1s;
-              "><img src="./img/gallery/s3-b.jpg" class="polaroid-img" alt="WAA"
-                    onerror="this.style.background='#1F2937'"></div>
-
-                <div class="polaroid accent-y" style="
-                width: 52%; height: 40%;
-                bottom: 4%; right: 5%;
-                --p-transform: rotate(0.6deg);
-                transform: var(--p-transform);
-                z-index: 5; animation-delay: .18s;
-              "><img src="./img/gallery/s3-c.jpg" class="polaroid-img" alt="WAA"
-                    onerror="this.style.background='#0B0F19'"></div>
-
-              </div>
-
-              <!-- Dots (built by JS) -->
-              <div class="slideshow-dots" id="slideshowDots"></div>
-
-            </div>
+  <div id="home" style="position: relative; background-image: url('./img/hero-collage.jpg'); background-size: cover; background-position: center; min-height: 100vh; display: flex; align-items: stretch;">
+    
+    <!-- Dark overlay anchored to the right for text readability -->
+    <div style="position: absolute; inset: 0; background: linear-gradient(to left, rgba(11, 15, 25, 0.801) 0%, rgba(11, 15, 25, 0.7) 40%, rgba(11, 15, 25, 0) 100%); z-index: 1;"></div>
+    
+    <div class="container-xl px-3 px-md-4 py-5 w-100 d-flex align-items-center" style="position: relative; z-index: 2;">
+      <div class="row w-100">
+        <!-- Text pushed to the right -->
+        <div class="col-12 col-md-8 col-lg-6 ms-auto text-end">
+          <!-- What About ANIME heading -->
+          <h1 style="
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(38px, 6vw, 78px);
+            line-height: 1;
+            color: #fff;
+            letter-spacing: 2px;
+            margin: 0 0 0.6rem;
+          ">What About <span style="color: var(--orange);">ANIME</span></h1>
+          <div style="width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,69,0,0.6), transparent); margin-bottom: 1.25rem;"></div>
+          <p class="hero-desc" style="text-align: right; margin-left: auto;">East Africa's home for anime culture. <strong>Podcast. Events. Reviews. Hot Takes. Community.</strong> Hosted by Waboi, Keith, Dekk &amp; Nissi.</p>
+          <div class="d-flex gap-3 flex-wrap justify-content-end mt-4">
+            <a href="#podcast" class="btn-primary-waa">Listen Now</a>
+            <a href="#events" class="btn-outline-waa">Upcoming Events</a>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- ═══════════════════════════════ PREVIOUS EVENTS SLIDER ═══════════════════════════════ -->
+  <div style="background: #000; padding: 4rem 0 5rem; overflow: hidden;">
+    <div class="text-center mb-5">
+      <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 72px); color: #fff; letter-spacing: 2px; line-height: 1; margin-bottom: 0;">PREVIOUS EVENTS ARCHIVE</h2>
+      <div style="width: 60px; height: 3px; background: var(--yellow); margin: 15px auto 0;"></div>
+    </div>
+    
+    <!-- Swiper -->
+    <div class="swiper mySwiper" style="width: 100%; padding-top: 50px; padding-bottom: 50px;">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Anime Night Archives/1.jpg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Anime Night Archives</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Anime Quiz/1.jpg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Anime Quiz</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Anniversary/1.jpg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Anniversary</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Artist Alley/1.jpg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Artist Alley</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Board Games/1.jpg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Board Games</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Cinema Watch Parties/1.jpg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Cinema Watch Parties</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Console Gaming/1.jpg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Console Gaming</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Cosplay/1.jpg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Cosplay</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Digi Artfest/2026/1.jpeg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Digi Artfest</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Interviews:Podcast/2.jpeg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Interviews/Podcast</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Japanese Festival/1.jpeg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Japanese Festival</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Kareoke/1.jpg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Kareoke</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/Ranking Board/1.jpg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">Ranking Board</div></div></div>
+        <div class="swiper-slide"><div class="slider-card"><img src="./img/THEMED Anime Nights/Sake Night/1.jpeg" onerror="this.onerror=null; this.src='./img/logo.png'"><div class="slider-title">THEMED Anime Nights</div></div></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <style>
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 320px;
+      height: 440px;
+    }
+    
+    @media (max-width: 768px) {
+      .swiper-slide {
+        width: 260px;
+        height: 360px;
+      }
+    }
+    
+    .slider-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+    
+    .slider-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .swiper-slide-active .slider-card img {
+      transform: scale(1.05);
+    }
+    
+    .slider-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 30px 20px 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    
+    .swiper-pagination-bullet {
+      background: rgba(255, 248, 231, 0.4);
+    }
+    .swiper-pagination-bullet-active {
+      background: var(--yellow);
+    }
+  </style>
 
   <!-- ═══════════════════════════════ EVENTS ═══════════════════════════════ -->
   <div class="divider-o"></div>
@@ -2376,7 +2348,7 @@
         <div class="col-12 col-md-8">
           <span class="section-tag light">Events Feed</span>
           <h2 class="section-title light">What's <span class="accent-y">Going On?</span></h2>
-          <p class="section-desc light">Catch our next big gathering or see highlights from our previous events.</p>
+          <p class="section-desc light">Catch our next big gathering! <strong>Every Anime Night this year is uniquely themed (e.g., Weapons Night!)</strong> to bring you a completely different experience every time. See highlights from our previous events below.</p>
         </div>
       </div>
 
@@ -2386,28 +2358,28 @@
           <div class="upcoming-event-card">
             <div class="upcoming-img-container">
               <span class="upcoming-badge">UPCOMING EVENT</span>
-              <img src="./img/calendar/may.jpeg" alt="Upcoming Event" onerror="this.src='./img/anime.jpg';">
+              <img src="./img/calendar/june.jpeg" alt="Upcoming Event" onerror="this.src='./img/anime.jpg';">
             </div>
             <div class="upcoming-card-body">
               <div class="upcoming-event-date">
-                <i class="fa-regular fa-calendar-days"></i> MAY 28, 2026 (THURSDAY)
+                <i class="fa-regular fa-calendar-days"></i> JUNE 27, 2026 (SATURDAY)
               </div>
-              <h3 class="upcoming-event-title">Anime Night</h3>
+              <h3 class="upcoming-event-title">Summer Sports Event</h3>
+              <div style="display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--orange); border-left: 3px solid var(--orange); padding-left: 10px; margin-bottom: 0.75rem;">Otakus VS Gamers</div>
               <p class="upcoming-event-desc">
-                East Africa's premier anime screening, networking, and gaming night. Join Uganda's otaku community for
-                movie screenings, trivia tournaments, artist alleys, and high-energy J-pop karaoke sessions.
+                Sports, nerds, touch grass. Compete in community activities! A special event for the WAA community to get active, bond, and have fun outside the usual anime night setup.
               </p>
               <div class="upcoming-event-meta">
                 <div class="upcoming-meta-item">
                   <i class="fa-solid fa-location-dot"></i> Kampala, Uganda
                 </div>
                 <div class="upcoming-meta-item">
-                  <i class="fa-solid fa-clock"></i> 6:00 PM onwards
+                  <i class="fa-solid fa-clock"></i> 10:00 AM - 6:00 PM  
                 </div>
               </div>
               <div style="margin-top:1.25rem;">
                 <a href="https://www.quicket.co.ug" target="_blank" class="btn-buy-ticket">
-                  Buy Your Ticket
+                  BUY YOUR TICKET
                 </a>
               </div>
             </div>
@@ -2417,46 +2389,49 @@
         <!-- Right: Past Events Stack -->
         <div class="col-12 col-lg-5 d-flex flex-column justify-content-between fade-in">
           <div class="past-events-stack">
+            
+            <div style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--yellow); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">Crossover Arcs</div>
+            <p style="font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 1rem; line-height: 1.3;">Community outings to external events.</p>
 
             <!-- Past Event 1 -->
             <a href="events.html" class="past-event-card">
               <div class="past-event-thumb">
-                <span class="past-event-badge">PAST</span>
+                <span class="past-event-badge">ARC</span>
                 <img src="./img/calendar/apr.jpeg" alt="Past Event" onerror="this.src='./img/anime.jpg';">
               </div>
               <div class="past-event-content">
                 <div class="past-event-date">APRIL 30, 2026</div>
-                <h4 class="past-event-title">Anime Night</h4>
-                <p class="past-event-desc">An unforgettable night of trivia tournaments, screenings, and community
-                  vibes.</p>
+                <h4 class="past-event-title">Japanese Festival</h4>
+                <p class="past-event-desc">We went and experienced the culture as a community without curating.</p>
               </div>
             </a>
+
+            <div style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.2rem; margin-top: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">Collaborations</div>
+            <p style="font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 1rem; line-height: 1.3;">Internally organized events with brand partners.</p>
 
             <!-- Past Event 2 -->
             <a href="events.html" class="past-event-card">
               <div class="past-event-thumb">
-                <span class="past-event-badge">PAST</span>
+                <span class="past-event-badge">COLLAB</span>
                 <img src="./img/calendar/mar.jpeg" alt="Past Event" onerror="this.src='./img/anime.jpg';">
               </div>
               <div class="past-event-content">
                 <div class="past-event-date">MARCH 21, 2026</div>
                 <h4 class="past-event-title">Digi Art Fest</h4>
-                <p class="past-event-desc">A decade of celebrating digital art, creative freelancers, and local
-                  illustrators.</p>
+                <p class="past-event-desc">A decade of celebrating digital art, creative freelancers, and local illustrators.</p>
               </div>
             </a>
 
             <!-- Past Event 3 -->
             <a href="events.html" class="past-event-card">
               <div class="past-event-thumb">
-                <span class="past-event-badge">PAST</span>
+                <span class="past-event-badge">COLLAB</span>
                 <img src="./img/calendar/feb.jpeg" alt="Past Event" onerror="this.src='./img/anime.jpg';">
               </div>
               <div class="past-event-content">
                 <div class="past-event-date">FEBRUARY 26, 2026</div>
-                <h4 class="past-event-title">Anime Night</h4>
-                <p class="past-event-desc">Kicking off the 2026 calendar with full-room screenings and gaming
-                  competitions.</p>
+                <h4 class="past-event-title">Cinemax Watch Party</h4>
+                <p class="past-event-desc">Internally organized watch party for the latest anime movie drop.</p>
               </div>
             </a>
 
@@ -2476,10 +2451,6 @@
 
   <!-- ═══════════════════════════════ PODCAST ═══════════════════════════════ -->
   <div class="divider-y"></div>
-  <!--
-  BG IMAGE: Add to the div below:
-  style="background-image: url('your-podcast-bg.jpg'); background-size:cover; background-position:center;"
--->
   <div id="podcast">
     <!-- LEFT: Accent column -->
     <div class="podcast-side-col">
@@ -2522,11 +2493,11 @@
       </div>
       <div class="platforms-strip fade-in">
 
-        <a href="https://www.youtube.com/@whataboutanimeee" target="_blank" class="platform-card">
-          <div class="platform-icon yt"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-          <div class="platform-name">YouTube</div>
-          <div class="platform-handle">@whataboutanime</div>
-          <div class="platform-desc">Full episodes, clips, and anime content drops weekly.</div>
+        <a href="https://www.instagram.com/whataboutanimee/" target="_blank" class="platform-card">
+          <div class="platform-icon ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          <div class="platform-name">Instagram</div>
+          <div class="platform-handle">@whataboutanimee</div>
+          <div class="platform-desc">Behind the scenes, polls, community updates and event announcements.</div>
           <div class="platform-freq">Weekly</div>
         </a>
 
@@ -2536,14 +2507,6 @@
           <div class="platform-handle">@whataboutanimee</div>
           <div class="platform-desc">Hot takes, anime edits, and quick-fire reactions daily.</div>
           <div class="platform-freq">Daily</div>
-        </a>
-
-        <a href="https://www.instagram.com/whataboutanimee/" target="_blank" class="platform-card">
-          <div class="platform-icon ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
-          <div class="platform-name">Instagram</div>
-          <div class="platform-handle">@whataboutanimee</div>
-          <div class="platform-desc">Behind the scenes, polls, community updates and event announcements.</div>
-          <div class="platform-freq">Weekly</div>
         </a>
 
       </div>
@@ -2583,7 +2546,7 @@
               </div>
             </div>
 
-            <h2 class="panel-title">Join the <span style="color:#5865F2;">Community</span></h2>
+            <h2 class="panel-title">Join the <span style="color:#6841f2;">Community</span></h2>
             <p class="panel-desc">Discuss episodes, share recommendations, join online anime nights, and vibe with
               otakus from Uganda and beyond. The community lives here.</p>
             <a href="https://discord.com/invite/XXhMUw7Ay8" target="_blank" class="btn-panel-cta btn-discord">Join
@@ -2593,36 +2556,74 @@
       </div>
     </div>
 
-    <!-- BOTTOM HALF: Merch Shop — full-bleed panel -->
-
-    <div class="community-merch-half" style="
-    background-image: url('./img/kaizoku1.png');
-    background-size: cover;
-    background-position: center;
-  ">
-      <div class="merch-overlay">
-        <div class="container-xl px-3 px-md-4 w-100">
-          <div class="panel-content">
-            <span class="panel-eyebrow">Merch &amp; Shop</span>
-
-            <!-- Merch shop logo — swap src with your actual logo -->
-            <div class="merch-logo-wrap">
-              <img src="./img/kaizoku.png" alt="WAA Merch Shop" class="merch-logo-img"
-                onerror="this.style.display='none'; document.getElementById('merch-logo-fallback').style.display='block';">
-              <div id="merch-logo-fallback" style="display:none;">
-                <div
-                  style="font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,60px);color:#fff;letter-spacing:2px;line-height:1;">
-                  WAA</div>
-                <div
-                  style="font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.5vw,28px);color:var(--yellow);letter-spacing:4px;">
-                  MERCH SHOP</div>
-              </div>
+    <!-- BOTTOM HALF: Merch Shop — LA THIEVES STYLE -->
+    <div style="background-color: #fff; padding: 5rem 0;">
+      <div class="container-xl px-3 px-md-4 w-100">
+        
+        <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap">
+          <div>
+            <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 8vw, 100px); color: #000; line-height: .9; margin: 0; letter-spacing: 1px;">WHAT ABOUT MERCH</h2>
+            <div style="font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 700; color: #008329; text-transform: uppercase; margin-top: 10px; letter-spacing: 2px;">
+              Rep the culture and the now
             </div>
+          </div>
+          <a href="https://kaizoq.com/" target="_blank" style="color: #000; text-decoration: none; font-size: 13px; font-weight: 800; letter-spacing: 1px; padding-bottom: 5px;">
+            Explore More <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
 
-            <h2 class="panel-title">Rep the <span style="color:var(--yellow);">Culture</span></h2>
-            <p class="panel-desc">Tees, hoodies and more — wear your love for anime loud and proud. Limited drops, East
-              African heat.</p>
-            <a href="https://kaizoq.com/" target="_blank" class="btn-panel-cta btn-merch-shop">Shop Now →</a>
+        <div class="row g-2 mt-2">
+          <!-- Item 1 -->
+          <div class="col-6 col-md-3">
+            <div style="background: #f4f4f4; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2rem;">
+               <img src="./img/gallery/SS.png" alt="Black T-Shirt" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" onerror="this.src='./img/logo.png'">
+            </div>
+            <div class="d-flex justify-content-between mt-2" style="font-size: 11px; font-weight: 800; color: #000; text-transform: uppercase;">
+               <div>
+                  <div>CORE T-SHIRT - BLACK</div>
+                  <div style="font-weight: 400; font-size: 10px; color: #666; margin-top: 2px;">SIZE: S M L XL 2X 3X</div>
+               </div>
+               <div>30,000 UGX</div>
+            </div>
+          </div>
+          <!-- Item 2 -->
+          <div class="col-6 col-md-3">
+            <div style="background: #f4f4f4; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2rem;">
+               <img src="./img/gallery/s1-b.jpg" alt="Red T-Shirt" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" onerror="this.src='./img/logo.png'">
+            </div>
+            <div class="d-flex justify-content-between mt-2" style="font-size: 11px; font-weight: 800; color: #000; text-transform: uppercase;">
+               <div>
+                  <div>CORE T-SHIRT - ORANGE</div>
+                  <div style="font-weight: 400; font-size: 10px; color: #666; margin-top: 2px;">SIZE: S M L XL 2X 3X</div>
+               </div>
+               <div>30,000 UGX</div>
+            </div>
+          </div>
+          <!-- Item 3 -->
+          <div class="col-6 col-md-3">
+            <div style="background: #f4f4f4; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2rem;">
+               <img src="./img/gallery/s2-c.jpg" alt="Black Hoodie" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" onerror="this.src='./img/logo.png'">
+            </div>
+            <div class="d-flex justify-content-between mt-2" style="font-size: 11px; font-weight: 800; color: #000; text-transform: uppercase;">
+               <div>
+                  <div>CORE HOODIE - BLACK</div>
+                  <div style="font-weight: 400; font-size: 10px; color: #666; margin-top: 2px;">SIZE: S M L XL 2X 3X</div>
+               </div>
+               <div>75,000 UGX</div>
+            </div>
+          </div>
+          <!-- Item 4 -->
+          <div class="col-6 col-md-3">
+            <div style="background: #f4f4f4; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2rem;">
+               <img src="./img/gallery/s3-a.jpg" alt="Black Hat" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply;" onerror="this.src='./img/logo.png'">
+            </div>
+            <div class="d-flex justify-content-between mt-2" style="font-size: 11px; font-weight: 800; color: #000; text-transform: uppercase;">
+               <div>
+                  <div>CORE HAT - BLACK</div>
+                  <div style="font-weight: 400; font-size: 10px; color: #666; margin-top: 2px;">ONE SIZE</div>
+               </div>
+               <div>15,000 UGX</div>
+            </div>
           </div>
         </div>
       </div>
@@ -2672,11 +2673,10 @@
         </div>
       </div>
       <div class="about-story fade-in">
-        <div class="row g-4 align-items-center">
-          <div class="col-12 col-md-4">
-            <div class="about-big-text">EAST<br>AFRICA'S<br>OWN</div>
-          </div>
-          <div class="col-12 col-md-8">
+        <div class="row g-5 align-items-center">
+          <!-- Text Column (Vertical Stack) -->
+          <div class="col-12 col-lg-5">
+            <div class="about-big-text mb-4" style="line-height: 0.9; text-align: left;">EAST<br>AFRICA'S<br>OWN</div>
             <p class="about-story-text">
               <strong>What About Anime</strong> started as a group of friends in Uganda who loved anime and couldn't
               stop talking about it. What began as casual conversations became a podcast, then an event series, then a
@@ -2687,6 +2687,18 @@
               Uganda.<br><br>
               This is home base. Welcome to <strong>What About Anime</strong>.
             </p>
+          </div>
+          
+          <!-- Video Column -->
+          <div class="col-12 col-lg-7 d-flex justify-content-center">
+            <div class="about-video-wrap" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); cursor: pointer; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 360px;" onclick="const v=this.querySelector('video'); if(v.paused){v.play();this.querySelector('.play-btn-overlay').style.opacity='0';}else{v.pause();this.querySelector('.play-btn-overlay').style.opacity='1';}">
+              <video src="./video/WhoWeAre.mp4" playsinline style="width: 100%; display: block; background: transparent; border-radius: 16px;"></video>
+              <div class="play-btn-overlay" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); transition: opacity 0.3s ease;">
+                <div style="width: 80px; height: 80px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 32px; box-shadow: 0 10px 20px rgba(255, 69, 0, 0.4); transition: transform 0.2s;">
+                  <i class="fa-solid fa-play" style="margin-left: 6px;"></i>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2817,6 +2829,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     // ── EPISODES ──
     let showingAll = false;
@@ -2874,7 +2887,7 @@
         card.innerHTML = `
       <div class="ep-num">${String(ep.num).padStart(2, '0')}</div>
       <div class="ep-play">
-        <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M6 3.5L14.5 9L6 14.5V3.5Z" fill="#1A0F00"/></svg>
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M6 3.5L14.5 9L6 14.5V3.5Z" fill="#ffffff"/></svg>
       </div>
       <div class="ep-info">
         <div class="ep-title">${ep.title}</div>
@@ -3049,6 +3062,7 @@
       function next() { goTo(current + 1); }
 
       function resetProgress() {
+        if (!progressBar) return;
         progressBar.style.transition = 'none';
         progressBar.style.width = '0%';
         void progressBar.offsetWidth;
@@ -3082,6 +3096,32 @@
 
       startAuto();
     })();
+
+    // ── SWIPER INIT ──
+    if (typeof Swiper !== 'undefined') {
+      new Swiper('.mySwiper', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        loop: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        coverflowEffect: {
+          rotate: 30,
+          stretch: 0,
+          depth: 200,
+          modifier: 1,
+          slideShadows: true,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+    }
   </script>
 </body>
 
