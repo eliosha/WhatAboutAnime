@@ -605,7 +605,7 @@
 
     .upcoming-img-container {
       position: relative;
-      height: 280px;
+      height: 380px;
       overflow: hidden;
     }
 
@@ -641,6 +641,22 @@
       flex: 1;
       display: flex;
       flex-direction: column;
+    }
+
+    @media (min-width: 992px) {
+      .horizontal-desktop {
+        flex-direction: row !important;
+        align-items: stretch;
+      }
+      .horizontal-desktop .upcoming-img-container {
+        width: 45%;
+        height: auto;
+        min-height: 380px;
+      }
+      .horizontal-desktop .upcoming-card-body {
+        width: 55%;
+        justify-content: center;
+      }
     }
 
     .upcoming-event-date {
@@ -715,28 +731,31 @@
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
-      height: 100%;
     }
 
     .past-event-card {
       display: flex;
       background: var(--dark-mid);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+      transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
       text-decoration: none !important;
       border-radius: 4px;
       overflow: hidden;
+      opacity: 0.55;
+      filter: grayscale(80%);
     }
 
     .past-event-card:hover {
       border-color: rgba(245, 194, 0, 0.4);
       transform: translateX(4px);
       background: rgba(255, 255, 255, 0.02);
+      opacity: 1;
+      filter: grayscale(0%);
     }
 
     .past-event-thumb {
-      width: 120px;
-      min-width: 120px;
+      width: 90px;
+      min-width: 90px;
       position: relative;
       overflow: hidden;
     }
@@ -768,7 +787,7 @@
     }
 
     .past-event-content {
-      padding: 1.25rem;
+      padding: 0.75rem 1.25rem;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -2357,10 +2376,10 @@
         </div>
       </div>
 
-      <div class="row g-4">
-        <!-- Left: Upcoming Event Card -->
-        <div class="col-12 col-lg-7 fade-in">
-          <div class="upcoming-event-card">
+      <div class="row g-4 mb-5">
+        <!-- Upcoming Events -->
+        <div class="col-12 fade-in d-flex flex-column gap-4">
+          <div class="upcoming-event-card horizontal-desktop">
             <div class="upcoming-img-container">
               <span class="upcoming-badge">UPCOMING EVENT</span>
               <img src="./img/calendar/june.jpeg" alt="Upcoming Event" onerror="this.src='./img/anime.jpg';">
@@ -2390,14 +2409,14 @@
             </div>
           </div>
 
-          <div class="upcoming-event-card mt-4">
+          <div class="upcoming-event-card horizontal-desktop">
             <div class="upcoming-img-container">
-              <span class="upcoming-badge" style="background: var(--yellow); color: var(--dark);">ALSO UPCOMING</span>
+              <span class="upcoming-badge" style="background: #00e5ff; color: #000; box-shadow: 0 0 20px rgba(0, 229, 255, 0.6); border: 1px solid #00e5ff;">ALSO UPCOMING</span>
               <img src="./img/calendar/aug.jpeg" alt="Otamatsuri" onerror="this.src='./img/anime.jpg';">
             </div>
             <div class="upcoming-card-body">
               <div class="upcoming-event-date">
-                <i class="fa-regular fa-calendar-days"></i> AUGUST 2026
+                <i class="fa-regular fa-calendar-days"></i> AUGUST 22, 2026
               </div>
               <h3 class="upcoming-event-title">Otamatsuri</h3>
               <div style="display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--yellow); border-left: 3px solid var(--yellow); padding-left: 10px; margin-bottom: 0.75rem;">Uganda's Anime Festival</div>
@@ -2417,14 +2436,15 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Right: Past Events Stack -->
-        <div class="col-12 col-lg-5 d-flex flex-column gap-4 fade-in">
-          <div class="past-events-stack">
-            
-            <div style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--yellow); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">Crossover Arcs</div>
-            <p style="font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 1rem; line-height: 1.3;">Community outings to external events.</p>
+      <div class="row fade-in justify-content-center">
+        <!-- Past Events Stack -->
+        <div class="col-12 col-lg-8">
+          
+          <div style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--yellow); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">Previous Events</div>
 
+          <div class="past-events-stack d-flex flex-column gap-3">
             <!-- Past Event 1 -->
             <a href="events.html" class="past-event-card">
               <div class="past-event-thumb">
@@ -2437,9 +2457,6 @@
                 <p class="past-event-desc">We went and experienced the culture as a community without curating.</p>
               </div>
             </a>
-
-            <div style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.2rem; margin-top: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">Collaborations</div>
-            <p style="font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 1rem; line-height: 1.3;">Internally organized events with brand partners.</p>
 
             <!-- Past Event 2 -->
             <a href="events.html" class="past-event-card">
@@ -2461,18 +2478,17 @@
                 <img src="./img/calendar/feb.jpeg" alt="Past Event" onerror="this.src='./img/anime.jpg';">
               </div>
               <div class="past-event-content">
-                <div class="past-event-date">FEBRUARY 26, 2026</div>
+                <div class="past-event-date">SEPTEMBER 9, 2025</div>
                 <h4 class="past-event-title">Cinemax Watch Party</h4>
                 <p class="past-event-desc">Internally organized watch party for the latest anime movie drop.</p>
               </div>
             </a>
-
           </div>
 
           <!-- View More Button -->
-          <div class="mt-4">
+          <div class="mt-4 text-center">
             <a href="events.html"
-              class="btn-outline-waa w-100 text-center py-3 d-flex align-items-center justify-content-center gap-2">
+              class="btn-outline-waa d-inline-flex align-items-center justify-content-center gap-2 py-3 px-5">
               View Full Event Calendar <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
