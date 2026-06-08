@@ -591,7 +591,6 @@
       background: var(--dark-mid);
       border: 1px solid rgba(99, 102, 241, 0.2);
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-      height: 100%;
       display: flex;
       flex-direction: column;
       border-radius: 4px;
@@ -2390,10 +2389,37 @@
               </div>
             </div>
           </div>
+
+          <div class="upcoming-event-card mt-4">
+            <div class="upcoming-img-container">
+              <span class="upcoming-badge" style="background: var(--yellow); color: var(--dark);">ALSO UPCOMING</span>
+              <img src="./img/calendar/aug.jpeg" alt="Otamatsuri" onerror="this.src='./img/anime.jpg';">
+            </div>
+            <div class="upcoming-card-body">
+              <div class="upcoming-event-date">
+                <i class="fa-regular fa-calendar-days"></i> AUGUST 2026
+              </div>
+              <h3 class="upcoming-event-title">Otamatsuri</h3>
+              <div style="display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--yellow); border-left: 3px solid var(--yellow); padding-left: 10px; margin-bottom: 0.75rem;">Uganda's Anime Festival</div>
+              <p class="upcoming-event-desc">
+                The annual anime festival where the community comes together to celebrate anime, manga, and Japanese culture.
+              </p>
+              <div class="upcoming-event-meta">
+                <div class="upcoming-meta-item">
+                  <i class="fa-solid fa-location-dot"></i> Nairobi, Kenya
+                </div>
+              </div>
+              <div style="margin-top:1.25rem;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfRxsWoDuWI1bk5w1A1R0RRDFTVBuMR5a1gw1kTyMUQdJJqdw/viewform" target="_blank" class="btn-buy-ticket">
+                  BUY YOUR TICKET
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Right: Past Events Stack -->
-        <div class="col-12 col-lg-5 d-flex flex-column justify-content-between fade-in">
+        <div class="col-12 col-lg-5 d-flex flex-column gap-4 fade-in">
           <div class="past-events-stack">
             
             <div style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--yellow); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">Crossover Arcs</div>
@@ -2600,52 +2626,92 @@
         </a>
         
         <!-- 4 Products blending in -->
+        <style>
+          .merch-card-link {
+            text-decoration: none; 
+            display: block;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          }
+          .merch-card-link:hover {
+            transform: translateY(-10px);
+          }
+          .merch-img-wrapper {
+            aspect-ratio: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+            border-radius: 16px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border: 2px solid transparent;
+          }
+          .merch-card-link:hover .merch-img-wrapper {
+            box-shadow: 0 15px 35px rgba(0, 131, 41, 0.4);
+            border-color: #008329;
+          }
+          .merch-card-img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+          .merch-card-link:hover .merch-card-img {
+            transform: scale(1.08);
+          }
+          .merch-card-title {
+            transition: color 0.3s ease;
+          }
+          .merch-card-link:hover .merch-card-title {
+            color: #008329;
+          }
+        </style>
         <div class="row g-3 mt-5">
           <div class="col-12 col-md-3">
-            <a href="https://kaizoq.com/" target="_blank" style="text-decoration: none; display: block;">
-              <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: transform 0.3s ease; border-radius: 16px;">
-                 <img src="./img/merch/5.jpeg" alt="Black T-Shirt" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='./img/logo.png'">
+            <a href="https://kaizoq.com/" target="_blank" class="merch-card-link">
+              <div class="merch-img-wrapper">
+                 <img src="./img/merch/5.jpeg" alt="Black T-Shirt" class="merch-card-img" onerror="this.src='./img/logo.png'">
               </div>
               <div class="d-flex justify-content-between mt-3" style="font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase;">
                  <div>
-                    <div>WHAT ABOUT ANIME SHIRTS</div>
+                    <div class="merch-card-title">WHAT ABOUT ANIME SHIRTS</div>
                     <div style="font-weight: 400; font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 4px;">SIZE: S M L XL 2X 3X</div>
                  </div>
               </div>
             </a>
           </div>
           <div class="col-12 col-md-3">
-            <a href="https://kaizoq.com/" target="_blank" style="text-decoration: none; display: block;">
-              <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: transform 0.3s ease; border-radius: 16px;">
-                 <img src="./img/merch/2.jpeg" alt="Red T-Shirt" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='./img/logo.png'">
+            <a href="https://kaizoq.com/" target="_blank" class="merch-card-link">
+              <div class="merch-img-wrapper">
+                 <img src="./img/merch/2.jpeg" alt="Red T-Shirt" class="merch-card-img" onerror="this.src='./img/logo.png'">
               </div>
               <div class="d-flex justify-content-between mt-3" style="font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase;">
                  <div>
-                    <div>HANAFUDA EARRINGS</div>
+                    <div class="merch-card-title">HANAFUDA EARRINGS</div>
                  </div>
               </div>
             </a>
           </div>
           <div class="col-12 col-md-3">
-            <a href="https://kaizoq.com/" target="_blank" style="text-decoration: none; display: block;">
-              <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: transform 0.3s ease; border-radius: 16px;">
-                 <img src="./img/merch/3.JPG" alt="Black Hoodie" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='./img/logo.png'">
+            <a href="https://kaizoq.com/" target="_blank" class="merch-card-link">
+              <div class="merch-img-wrapper">
+                 <img src="./img/merch/3.JPG" alt="Black Hoodie" class="merch-card-img" onerror="this.src='./img/logo.png'">
               </div>
               <div class="d-flex justify-content-between mt-3" style="font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase;">
                  <div>
-                    <div>KATANAS</div>
+                    <div class="merch-card-title">KATANAS</div>
                  </div>
               </div>
             </a>
           </div>
           <div class="col-12 col-md-3">
-            <a href="https://kaizoq.com/" target="_blank" style="text-decoration: none; display: block;">
-              <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: transform 0.3s ease; border-radius: 16px;">
-                 <img src="./img/merch/6.jpeg" alt="Orange Hoodie" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='./img/logo.png'">
+            <a href="https://kaizoq.com/" target="_blank" class="merch-card-link">
+              <div class="merch-img-wrapper">
+                 <img src="./img/merch/6.jpeg" alt="Orange Hoodie" class="merch-card-img" onerror="this.src='./img/logo.png'">
               </div>
               <div class="d-flex justify-content-between mt-3" style="font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase;">
                  <div>
-                    <div>AKATSUKI ROBE</div>
+                    <div class="merch-card-title">AKATSUKI ROBE</div>
                  </div>
               </div>
             </a>
@@ -2743,7 +2809,7 @@
         </div>
 
         <div class="suggestion-right">
-          <form action="https://formspree.io/f/xrbqjrlg" method="POST" style="display:flex;flex-direction:column;gap:1.15rem;">
+          <form action="https://formspree.io/f/mojbgrow" method="POST" style="display:flex;flex-direction:column;gap:1.15rem;">
             <div>
               <label class="form-field-lbl">Your Name</label>
               <input type="text" name="name" placeholder="What do we call you?" required class="form-input">
