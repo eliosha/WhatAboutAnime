@@ -2488,38 +2488,45 @@
     }
 
     .prog-card {
-      background: var(--dark-mid);
-      padding: 2.5rem 1.5rem;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--dark-mid);
+      padding: 2rem 1.5rem;
       position: relative;
       overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
       align-items: flex-start;
       gap: 0.5rem;
+      text-decoration: none;
+      min-height: 380px;
+      border-radius: 12px;
     }
 
     .prog-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(245, 194, 0, 0.04) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
+      z-index: 1;
+      transition: background 0.5s ease;
     }
-
-    .prog-card:hover {
-      background: rgba(245, 194, 0, 0.02);
-      outline: 1px solid var(--yellow);
+    
+    .prog-card-content {
+      position: relative;
       z-index: 2;
     }
 
+    .prog-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 25px 45px rgba(0,0,0,0.6), 0 0 30px rgba(255, 215, 0, 0.25);
+      z-index: 5;
+    }
+    
     .prog-card:hover::before {
-      opacity: 1;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
     }
 
     .prog-card-icon {
@@ -2560,7 +2567,7 @@
     .prog-card-desc {
       font-family: 'Nunito', sans-serif;
       font-size: 12.5px;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 0.6);
       line-height: 1.4;
       margin: 0;
       margin-top: 0.25rem;
@@ -2748,43 +2755,43 @@
         <div class="col-12 col-lg-7 fade-in">
           <div class="cal-grid">
             <!-- FEB -->
-            <div class="cal-month">
+            <div class="cal-month" onclick="window.location.href='gallery.html?activity=anime-night'" style="cursor: pointer;" onmouseover="this.querySelector('.cal-date').style.color='var(--yellow)'" onmouseout="this.querySelector('.cal-date').style.color='inherit'">
               <div class="cal-bg" style="background-image: url('./img/calendar/feb.jpeg');"></div>
               <div class="cal-month-header">FEB</div>
               <div class="cal-month-body">
                 <div class="cal-event-name">Anime Night</div>
-                <div class="cal-date">26</div>
+                <a href="gallery.html?activity=anime-night" class="cal-date" style="text-decoration: none; color: inherit; display: block; transition: color 0.3s;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='inherit'">26</a>
                 <div class="cal-day">Thursday</div>
               </div>
             </div>
             <!-- MAR -->
-            <div class="cal-month featured">
+            <div class="cal-month featured" onclick="window.location.href='gallery.html?activity=digifest'" style="cursor: pointer;" onmouseover="this.querySelector('.cal-date').style.color='var(--yellow)'" onmouseout="this.querySelector('.cal-date').style.color='inherit'">
               <div class="cal-bg" style="background-image: url('./img/calendar/mar.jpeg');"></div>
               <div class="cal-month-header">MAR</div>
               <div class="cal-month-body">
                 <div class="cal-event-name">Digi Art Fest</div>
-                <div class="cal-date">21</div>
+                <a href="gallery.html?activity=digifest" class="cal-date" style="text-decoration: none; color: inherit; display: block; transition: color 0.3s;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='inherit'">21</a>
                 <div class="cal-day">Saturday</div>
                 <div class="cal-desc">A decade of every creative's favourite annual festival</div>
               </div>
             </div>
             <!-- APR -->
-            <div class="cal-month">
+            <div class="cal-month" onclick="window.location.href='gallery.html?activity=anime-night'" style="cursor: pointer;" onmouseover="this.querySelector('.cal-date').style.color='var(--yellow)'" onmouseout="this.querySelector('.cal-date').style.color='inherit'">
               <div class="cal-bg" style="background-image: url('./img/calendar/apr.jpeg');"></div>
               <div class="cal-month-header">APR</div>
               <div class="cal-month-body">
                 <div class="cal-event-name">Anime Night</div>
-                <div class="cal-date">30</div>
+                <a href="gallery.html?activity=anime-night" class="cal-date" style="text-decoration: none; color: inherit; display: block; transition: color 0.3s;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='inherit'">30</a>
                 <div class="cal-day">Thursday</div>
               </div>
             </div>
             <!-- MAY -->
-            <div class="cal-month">
+            <div class="cal-month" onclick="window.location.href='gallery.html?activity=anime-night'" style="cursor: pointer;" onmouseover="this.querySelector('.cal-date').style.color='var(--yellow)'" onmouseout="this.querySelector('.cal-date').style.color='inherit'">
               <div class="cal-bg" style="background-image: url('./img/calendar/may.jpeg');"></div>
               <div class="cal-month-header">MAY</div>
               <div class="cal-month-body">
                 <div class="cal-event-name">Anime Night</div>
-                <div class="cal-date">28</div>
+                <a href="gallery.html?activity=anime-night" class="cal-date" style="text-decoration: none; color: inherit; display: block; transition: color 0.3s;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='inherit'">28</a>
                 <div class="cal-day">Thursday</div>
               </div>
             </div>
@@ -2800,54 +2807,54 @@
               </div>
             </div>
             <!-- JUL -->
-            <div class="cal-month">
+            <div class="cal-month" onclick="window.location.href='gallery.html?activity=anime-night'" style="cursor: pointer;" onmouseover="this.querySelector('.cal-date').style.color='var(--yellow)'" onmouseout="this.querySelector('.cal-date').style.color='inherit'">
               <div class="cal-bg" style="background-image: url('./img/calendar/july.jpeg');"></div>
               <div class="cal-month-header">JUL</div>
               <div class="cal-month-body">
                 <div class="cal-event-name">Anime Night</div>
-                <div class="cal-date">30</div>
+                <a href="gallery.html?activity=anime-night" class="cal-date" style="text-decoration: none; color: inherit; display: block; transition: color 0.3s;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='inherit'">30</a>
                 <div class="cal-day">Thursday</div>
               </div>
             </div>
             <!-- AUG -->
-            <div class="cal-month featured">
+            <div class="cal-month featured" onclick="window.location.href='gallery.html?activity=otamatsuri'" style="cursor: pointer;" onmouseover="this.querySelector('.cal-date').style.color='var(--yellow)'" onmouseout="this.querySelector('.cal-date').style.color='inherit'">
               <div class="cal-bg" style="background-image: url('./img/calendar/aug.jpeg');"></div>
               <div class="cal-month-header">AUG</div>
               <div class="cal-month-body">
                 <div class="cal-event-name">Otamatsurui</div>
-                <div class="cal-date" style="font-size:28px;line-height:1.2;">Nairobi</div>
+                <a href="gallery.html?activity=otamatsuri" class="cal-date" style="font-size:28px;line-height:1.2; text-decoration: none; color: inherit; display: block; transition: color 0.3s;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='inherit'">Nairobi</a>
                 <div class="cal-day">Saturday</div>
                 <div class="cal-desc">Raiding Nairobi Kenya for the biggest Otaku event in the region</div>
               </div>
             </div>
             <!-- SEPT -->
-            <div class="cal-month">
+            <div class="cal-month" onclick="window.location.href='gallery.html?activity=anime-night'" style="cursor: pointer;" onmouseover="this.querySelector('.cal-date').style.color='var(--yellow)'" onmouseout="this.querySelector('.cal-date').style.color='inherit'">
               <div class="cal-bg" style="background-image: url('./img/calendar/sep.jpeg');"></div>
               <div class="cal-month-header">SEPT</div>
               <div class="cal-month-body">
                 <div class="cal-event-name">Anime Night</div>
-                <div class="cal-date">24</div>
+                <a href="gallery.html?activity=anime-night" class="cal-date" style="text-decoration: none; color: inherit; display: block; transition: color 0.3s;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='inherit'">24</a>
                 <div class="cal-day">Thursday</div>
               </div>
             </div>
             <!-- OCT -->
-            <div class="cal-month">
+            <div class="cal-month" onclick="window.location.href='gallery.html?activity=anime-night'" style="cursor: pointer;" onmouseover="this.querySelector('.cal-date').style.color='var(--yellow)'" onmouseout="this.querySelector('.cal-date').style.color='inherit'">
               <div class="cal-bg" style="background-image: url('./img/calendar/oct.jpeg');"></div>
               <div class="cal-month-header">OCT</div>
               <div class="cal-month-body">
                 <div class="cal-event-name">Anime Night</div>
-                <div class="cal-date">29</div>
+                <a href="gallery.html?activity=anime-night" class="cal-date" style="text-decoration: none; color: inherit; display: block; transition: color 0.3s;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='inherit'">29</a>
                 <div class="cal-day">Thursday</div>
               </div>
             </div>
             <!-- NOV -->
-            <div class="cal-month featured" style="grid-column:span 3;">
+            <div class="cal-month featured" style="grid-column:span 3; cursor: pointer;" onclick="window.location.href='gallery.html?activity=anniversary'" onmouseover="this.querySelector('.cal-date').style.color='var(--yellow)'" onmouseout="this.querySelector('.cal-date').style.color='inherit'">
               <div class="cal-bg" style="background-image: url('./img/calendar/nov.jpeg');"></div>
               <div class="cal-month-header">NOV — Our Anniversary</div>
               <div class="cal-month-body d-flex align-items-center justify-content-between gap-3 flex-wrap">
                 <div>
                   <div class="cal-event-name">Anniversary Celebration</div>
-                  <div class="cal-date" style="font-size:24px;">Curtain Closer</div>
+                  <a href="gallery.html?activity=anniversary" class="cal-date" style="font-size:24px; text-decoration: none; color: inherit; display: block; transition: color 0.3s;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='inherit'">Curtain Closer</a>
                   <div class="cal-day">Saturday</div>
                 </div>
                 <div class="cal-desc" style="max-width:260px;font-size:12px;">Celebrating another year of community as
@@ -2902,36 +2909,46 @@
       <h2 class="section-heading fade-up">THE <span class="accent-o">PROGRAMME</span></h2>
 
       <div class="programme-grid">
-        <div class="prog-card fade-up">
-          <span class="prog-card-icon">🏆</span>
-          <div class="prog-card-num">01</div>
-          <div class="prog-card-title">Ranking Board</div>
-          <div class="prog-card-desc">Crown the best — debate the worst</div>
-        </div>
-        <div class="prog-card fade-up">
-          <span class="prog-card-icon">🎬</span>
-          <div class="prog-card-num">02</div>
-          <div class="prog-card-title">Anime Movie</div>
-          <div class="prog-card-desc">Big screen, big feelings</div>
-        </div>
-        <div class="prog-card fade-up">
-          <span class="prog-card-icon">🎨</span>
-          <div class="prog-card-num">03</div>
-          <div class="prog-card-title">Artist Alley</div>
-          <div class="prog-card-desc">Local creators, original work</div>
-        </div>
-        <div class="prog-card fade-up">
-          <span class="prog-card-icon">🎤</span>
-          <div class="prog-card-num">04</div>
-          <div class="prog-card-title">Karaoke</div>
-          <div class="prog-card-desc">Your fav OPs, no shame allowed</div>
-        </div>
-        <div class="prog-card fade-up">
-          <span class="prog-card-icon">🧠</span>
-          <div class="prog-card-num">05</div>
-          <div class="prog-card-title">Quiz</div>
-          <div class="prog-card-desc">Prove your anime IQ</div>
-        </div>
+        <a href="gallery.html?activity=ranking-board" class="prog-card fade-up" style="background-image: url('./img/gallery/12.jpeg');">
+          <div class="prog-card-content">
+            <span class="prog-card-icon">🏆</span>
+            <div class="prog-card-num">01</div>
+            <div class="prog-card-title">Ranking Board</div>
+            <div class="prog-card-desc">Crown the best — debate the worst</div>
+          </div>
+        </a>
+        <a href="gallery.html?activity=anime-movie" class="prog-card fade-up" style="background-image: url('./img/gallery/17.jpeg');">
+          <div class="prog-card-content">
+            <span class="prog-card-icon">🎬</span>
+            <div class="prog-card-num">02</div>
+            <div class="prog-card-title">Anime Movie</div>
+            <div class="prog-card-desc">Big screen, big feelings</div>
+          </div>
+        </a>
+        <a href="gallery.html?activity=artist-alley" class="prog-card fade-up" style="background-image: url('./img/gallery/19.jpeg');">
+          <div class="prog-card-content">
+            <span class="prog-card-icon">🎨</span>
+            <div class="prog-card-num">03</div>
+            <div class="prog-card-title">Artist Alley</div>
+            <div class="prog-card-desc">Local creators, original work</div>
+          </div>
+        </a>
+        <a href="gallery.html?activity=karaoke" class="prog-card fade-up" style="background-image: url('./img/gallery/29.jpeg');">
+          <div class="prog-card-content">
+            <span class="prog-card-icon">🎤</span>
+            <div class="prog-card-num">04</div>
+            <div class="prog-card-title">Kareoke</div>
+            <div class="prog-card-desc">Your fav OPs, no shame allowed</div>
+          </div>
+        </a>
+        <a href="gallery.html?activity=quiz" class="prog-card fade-up" style="background-image: url('./img/gallery/34.jpeg');">
+          <div class="prog-card-content">
+            <span class="prog-card-icon">🧠</span>
+            <div class="prog-card-num">05</div>
+            <div class="prog-card-title">Quiz</div>
+            <div class="prog-card-desc">Prove your anime IQ</div>
+          </div>
+        </a>
       </div>
 
       <!-- Event Categories -->
@@ -3169,7 +3186,10 @@
       </div>
       <hr class="footer-divider">
       <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <p class="footer-copy">© 2026 What About Anime — <span>Uganda</span>. All rights reserved.</p>
+        <div>
+          <p class="footer-copy" style="margin-bottom: 4px;">© 2026 What About Anime — <span>Uganda</span>. All rights reserved.</p>
+          <p class="footer-copy" style="margin-bottom: 0; font-size: 11px; opacity: 0.7;">Created by <a href="https://www.instagram.com/elio.sha/" target="_blank" style="color: var(--yellow); text-decoration: none;">Elisha Benjamin</a></p>
+        </div>
         <div class="d-flex gap-2">
           <a href="https://www.instagram.com/whataboutanimee/" target="_blank" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
           <a href="https://www.tiktok.com/@whataboutanimee?lang=en" target="_blank" class="social-link" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
