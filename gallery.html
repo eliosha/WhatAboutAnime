@@ -567,7 +567,6 @@
       box-shadow: 
         0 25px 60px rgba(0, 0, 0, 0.8),
         0 0 45px rgba(255, 69, 0, 0.25);
-      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
     .lightbox-close {
@@ -1789,42 +1788,7 @@
     function changeLightbox(dir, manual = false) {
       if (!visibleItems.length) return;
       currentIdx = (currentIdx + dir + visibleItems.length) % visibleItems.length;
-      const imgEl = document.getElementById('lightboxImg');
-      const placeholderEl = document.getElementById('lightboxPlaceholder');
-
-      if (imgEl.style.display !== 'none') {
-        imgEl.style.opacity = '0';
-      }
-      if (placeholderEl && placeholderEl.style.display !== 'none') {
-        placeholderEl.style.opacity = '0';
-      }
-
-      setTimeout(() => {
-        showLightboxAt(currentIdx);
-        
-        // Preload next image
-        const nextIdx = (currentIdx + 1) % visibleItems.length;
-        const nextItem = visibleItems[nextIdx];
-        if (nextItem) {
-          const nextImg = nextItem.querySelector('img');
-          if (nextImg) new Image().src = nextImg.src;
-        }
-
-        if (imgEl.style.display !== 'none') {
-          if (imgEl.complete) {
-            imgEl.style.opacity = '1';
-          } else {
-            imgEl.onload = () => {
-              imgEl.style.opacity = '1';
-              imgEl.onload = null;
-            };
-          }
-        }
-        if (placeholderEl && placeholderEl.style.display !== 'none') {
-          placeholderEl.style.opacity = '1';
-        }
-      }, 450);
-
+      showLightboxAt(currentIdx);
       if (manual) startAutoplay(); // Reset timer if user manually clicks
     }
 
