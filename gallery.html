@@ -722,6 +722,46 @@
       transform: translateY(0);
     }
 
+    /* ── BACK TO TOP ── */
+    #backToTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--orange);
+      border: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255, 69, 0, 0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+      pointer-events: none;
+    }
+
+    #backToTop.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    #backToTop:hover {
+      background: var(--yellow);
+      color: var(--dark);
+      box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    #backToTop svg {
+      width: 22px;
+      height: 22px;
+    }
+
     /* ── FOOTER ── */
     .site-footer {
       background-color: #040405;
@@ -1023,6 +1063,7 @@
         <button class="filter-btn" data-filter="anniversary">Anniversary</button>
         <button class="filter-btn" data-filter="otamatsuri">Otamatsuri</button>
         <button class="filter-btn" data-filter="community">Community</button>
+        <button class="filter-btn" data-filter="cosplay">Cosplay</button>
         <button class="filter-btn" data-filter="artist-alley">Artist Alley</button>
         <button class="filter-btn" data-filter="ranking-board">Ranking Board</button>
         <button class="filter-btn" data-filter="quiz">Quiz</button>
@@ -1068,7 +1109,7 @@
           </div>
         </div>
         <!--New Photo 4: Community-->
-        <div class="photo-item" data-label="Community" data-sub="Cosplay" data-cat="community"
+        <div class="photo-item" data-label="Cosplay" data-sub="Community" data-cat="cosplay"
           onclick="openLightbox(this)">
           <img src="./img/gallery/13.jpeg" alt="Cosplay"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -1159,7 +1200,7 @@
           </div>
         </div>
         <!-- New Photo 12: Cosplay -->
-        <div class="photo-item" data-label="Cosplay" data-sub="Community" data-cat="community"
+        <div class="photo-item" data-label="Cosplay" data-sub="Community" data-cat="cosplay"
           onclick="openLightbox(this)">
           <img src="./img/gallery/18.jpeg" alt="Cosplay"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -1248,7 +1289,7 @@
           <div class="photo-overlay"><div class="photo-expand"><i class="fa fa-expand"></i></div><div class="photo-label">Artist Alley</div></div>
         </div>
         <!-- Slot 21 -->
-        <div class="photo-item" data-label="New Photo" data-sub="Gallery" data-cat="anniversary" onclick="openLightbox(this)">
+        <div class="photo-item" data-label="Cosplay" data-sub="Gallery" data-cat="cosplay" onclick="openLightbox(this)">
           <img src="./img/gallery/33.jpeg" alt="New Photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="photo-placeholder" style="display:none">COS</div>
           <div class="photo-overlay"><div class="photo-expand"><i class="fa fa-expand"></i></div><div class="photo-label">Cosplay</div></div>
@@ -1382,7 +1423,7 @@
           <div class="photo-overlay"><div class="photo-expand"><i class="fa fa-expand"></i></div><div class="photo-label">Anime Night 2025</div></div>
         </div>
          <!-- Slot 43 -->
-        <div class="photo-item" data-label="Cosplay Showcase" data-sub="Gallery" data-cat="community" onclick="openLightbox(this)">
+        <div class="photo-item" data-label="Cosplay Showcase" data-sub="Gallery" data-cat="cosplay" onclick="openLightbox(this)">
           <img src="./img/gallery/110.jpeg" alt="New Photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="photo-placeholder" style="display:none">CS</div>
           <div class="photo-overlay"><div class="photo-expand"><i class="fa fa-expand"></i></div><div class="photo-label">Cosplay Showcase</div></div>
@@ -1400,10 +1441,10 @@
           <div class="photo-overlay"><div class="photo-expand"><i class="fa fa-expand"></i></div><div class="photo-label">Community</div></div>
         </div>
          <!-- Slot 46 -->
-        <div class="photo-item" data-label="Otamatsuri Fun" data-sub="Gallery" data-cat="anime-night" onclick="openLightbox(this)">
+        <div class="photo-item" data-label="Anime Night" data-sub="Gallery" data-cat="anime-night" onclick="openLightbox(this)">
           <img src="./img/gallery/15.jpeg" alt="New Photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="photo-placeholder" style="display:none">OT</div>
-          <div class="photo-overlay"><div class="photo-expand"><i class="fa fa-expand"></i></div><div class="photo-label">Otamatsuri Fun</div></div>
+          <div class="photo-placeholder" style="display:none">CD</div>
+          <div class="photo-overlay"><div class="photo-expand"><i class="fa fa-expand"></i></div><div class="photo-label">Character Debates</div></div>
         </div>
          <!-- Slot 47 -->
         <div class="photo-item" data-label="Anime Night Special" data-sub="Gallery" data-cat="anime-night" onclick="openLightbox(this)">
@@ -1566,6 +1607,11 @@
       <div class="lightbox-caption" id="lightboxCaption"></div>
     </div>
   </div>
+
+  <!-- ── BACK TO TOP ── -->
+  <button id="backToTop" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
   <!-- ── FOOTER ── -->
   <footer class="site-footer">
@@ -1808,6 +1854,12 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.06 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ── BACK TO TOP ──
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
   </script>
 </body>
 
