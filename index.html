@@ -322,6 +322,30 @@
       color: var(--yellow);
     }
 
+    .btn-solid-waa {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 19px;
+      letter-spacing: 1.5px;
+      padding: 13px 32px;
+      text-decoration: none;
+      border: 2px solid var(--orange);
+      border-radius: 4px;
+      transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
+      cursor: pointer;
+    }
+
+    .btn-solid-waa:hover {
+      background: var(--yellow);
+      color: var(--dark);
+      border-color: var(--yellow);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    }
+
     .hero-stats {
       display: flex;
       flex-wrap: wrap;
@@ -1311,6 +1335,20 @@
       overflow: hidden;
       aspect-ratio: 4 / 5;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      background: #000;
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .team-card-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      transition: width 0.4s ease;
     }
 
     .team-card img {
@@ -1320,14 +1358,14 @@
       transition: transform 0.4s ease;
     }
 
-    .team-card:hover img {
+    .team-card:not(.expanded):hover img {
       transform: scale(1.05);
     }
 
     .team-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%);
+      background: rgba(15, 15, 15, 0.75); /* Light shade of black overlay */
       opacity: 0;
       transition: opacity 0.3s ease;
       display: flex;
@@ -1335,7 +1373,7 @@
       padding: 1.5rem;
     }
 
-    .team-card:hover .team-overlay {
+    .team-card:not(.expanded):hover .team-overlay {
       opacity: 1;
     }
 
@@ -1347,14 +1385,179 @@
     }
 
     .team-name {
-      background: #000;
-      color: #fff;
+      background: #ffffff; /* White background for name badge */
+      color: #000000;      /* Black text */
       font-family: 'Inter', sans-serif;
       font-weight: 800;
-      font-size: 16px;
-      padding: 6px 12px;
+      font-size: 15px;
+      padding: 6px 14px;
       text-transform: uppercase;
       letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .team-name i {
+      font-size: 14px;
+      color: #000000; /* Black arrow icon */
+      transition: transform 0.2s ease;
+    }
+
+    .team-card:hover .team-name i {
+      transform: translateX(4px);
+    }
+
+    /* Details Panel */
+    .team-details {
+      display: none;
+      position: relative;
+      background: #0d0d0d; /* Pitch dark background */
+      padding: 2.5rem 2rem;
+      flex-direction: column;
+      justify-content: flex-start; /* Align content to top to prevent overflow clipping */
+      width: 100%;
+      color: #fff;
+      overflow-y: auto;
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .close-details-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .close-details-btn:hover {
+      color: var(--orange);
+      transform: scale(1.1);
+    }
+
+    .details-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      text-align: left;
+    }
+
+    /* Details badge (replacing blue badge from mockups with a light shade of black) */
+    .details-badge {
+      background: #1e1e1e; /* Light shade of black */
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      padding: 8px 16px;
+      display: inline-block;
+      align-self: flex-start;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .details-role {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      color: var(--orange);
+      letter-spacing: 1px;
+      margin-top: 0.25rem;
+    }
+
+    .details-bio {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      margin: 0.5rem 0 0.5rem 0;
+    }
+
+    /* Expanded Card State */
+    .team-card.expanded {
+      aspect-ratio: auto;
+      cursor: default;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+      border-color: rgba(255, 69, 0, 0.3);
+    }
+
+    .team-card.expanded .team-card-img-wrap img {
+      transform: none !important;
+    }
+
+    .team-card.expanded .team-overlay {
+      display: none !important; /* Hide overlay when active */
+    }
+
+    .team-card.expanded .team-details {
+      display: flex;
+    }
+
+    .team-card.show-details .team-details {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Desktop/Tablet (2+ columns) */
+    @media (min-width: 768px) {
+      .team-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+      
+      .team-card.expanded {
+        grid-column: span 2;
+        flex-direction: row;
+        height: 100%;
+        min-height: 400px;
+      }
+
+      .team-card.expanded .team-card-img-wrap {
+        width: 50%;
+        height: 100%;
+        aspect-ratio: auto;
+      }
+
+      .team-card.expanded .team-details {
+        display: flex;
+        width: 50%;
+        height: 100%;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 767px) {
+      .team-card.expanded .team-card-img-wrap {
+        width: 100%;
+        height: auto; /* Break the 100% height loop on mobile */
+        aspect-ratio: 4 / 5;
+      }
+
+      .team-card.expanded .team-details {
+        display: flex;
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .team-details {
+        transform: translateY(20px);
+        padding: 2rem 1.5rem; /* Squeeze padding slightly on mobile */
+      }
+
+      .team-card.show-details .team-details {
+        transform: translateY(0);
+      }
     }
 
     .about-story {
@@ -1605,6 +1808,7 @@
     .btn-primary-waa,
     .btn-outline-waa,
     .btn-yellow-waa,
+    .btn-solid-waa,
     .nav-cta {
       position: relative;
       overflow: hidden;
@@ -1612,6 +1816,7 @@
 
     .btn-primary-waa::before,
     .btn-yellow-waa::before,
+    .btn-solid-waa::before,
     .nav-cta::before {
       content: '';
       position: absolute;
@@ -1625,6 +1830,7 @@
 
     .btn-primary-waa:hover::before,
     .btn-yellow-waa:hover::before,
+    .btn-solid-waa:hover::before,
     .nav-cta:hover::before {
       left: 140%;
     }
@@ -2546,7 +2752,7 @@
           <!-- View More Button -->
           <div class="mt-5 text-center">
             <a href="events.html"
-              class="btn-outline-waa d-inline-flex align-items-center justify-content-center gap-2 py-3 px-5" style="border-color: var(--orange); color: var(--yellow);">
+              class="btn-solid-waa d-inline-flex align-items-center justify-content-center gap-2">
               Explore the Hype & View All Events <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
@@ -2804,59 +3010,156 @@
       <span class="section-tag light">The Hosts</span>
       <h2 class="section-title light">Who We <span class="accent">Are</span></h2>
       <div class="team-grid mt-4 fade-in">
-        <div class="team-card">
-          <img src="./img/about-us/wabai.jpeg" alt="Wabai">
-          <div class="team-overlay">
-            <div class="team-name-box">
-              <div class="team-name">MEET WABAI</div>
+        <!-- Wabai -->
+        <div class="team-card" onclick="toggleTeamCard(this)">
+          <div class="team-card-img-wrap">
+            <img src="./img/about-us/wabai.jpeg" alt="Wabai">
+            <div class="team-overlay">
+              <div class="team-name-box">
+                <span class="team-name">MEET WABAI <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="team-details">
+            <button class="close-details-btn" onclick="closeTeamCard(event, this)">×</button>
+            <div class="details-content">
+              <span class="details-badge">Wabai</span>
+              <div class="details-role">Team Lead & Designer</div>
+              <p class="details-bio">
+                Team Lead of What About Anime & Owner of ‘Kaizo Anime Shop’, Wabai is an artist & designer that is primarily niched towards the industrial arts. He is enthusiastic about merging storytelling & the arts with entrepreneurship.<br><br>He is also responsible for the Creative direction of WAA.
+              </p>
             </div>
           </div>
         </div>
-        <div class="team-card">
-          <img src="./img/about-us/keth.jpeg" alt="Keith">
-          <div class="team-overlay">
-            <div class="team-name-box">
-              <div class="team-name">MEET KEITH</div>
+
+        <!-- Keith -->
+        <div class="team-card" onclick="toggleTeamCard(this)">
+          <div class="team-card-img-wrap">
+            <img src="./img/about-us/keth.jpeg" alt="Keith">
+            <div class="team-overlay">
+              <div class="team-name-box">
+                <span class="team-name">MEET KEITH <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="team-details">
+            <button class="close-details-btn" onclick="closeTeamCard(event, this)">×</button>
+            <div class="details-content">
+              <span class="details-badge">Keith</span>
+              <div class="details-role">Co-founder & Media</div>
+              <p class="details-bio">
+                Keith Kann is a talented videographer that uses a camera to tell stories, he makes content around his journey on his channels on TikTok. He is also an avid streamer and Valorant gamer.<br><br>Keith is responsible for all WAA campaigns, podcast production, and video content production as well. He happens to work as a freelance video editor as well.
+              </p>
             </div>
           </div>
         </div>
-        <div class="team-card">
-          <img src="./img/about-us/deth.jpeg" alt="Dekk">
-          <div class="team-overlay">
-            <div class="team-name-box">
-              <div class="team-name">MEET DEKK</div>
+
+        <!-- Dekk -->
+        <div class="team-card" onclick="toggleTeamCard(this)">
+          <div class="team-card-img-wrap">
+            <img src="./img/about-us/deth.jpeg" alt="Dekk">
+            <div class="team-overlay">
+              <div class="team-name-box">
+                <span class="team-name">MEET DEKK <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="team-details">
+            <button class="close-details-btn" onclick="closeTeamCard(event, this)">×</button>
+            <div class="details-content">
+              <span class="details-badge">Dekk</span>
+              <div class="details-role">Games Master</div>
+              <p class="details-bio">
+                He is a Human Resource Manager that's endowed with the gift of people management. Which combined with his unrivaled anime lore he utilises to craft the Ranking board experience as well as movie selections for anime night.
+              </p>
             </div>
           </div>
         </div>
-        <div class="team-card">
-          <img src="./img/about-us/nikki.jpeg" alt="Nissi">
-          <div class="team-overlay">
-            <div class="team-name-box">
-              <div class="team-name">MEET NISSI</div>
+
+        <!-- Nissi -->
+        <div class="team-card" onclick="toggleTeamCard(this)">
+          <div class="team-card-img-wrap">
+            <img src="./img/about-us/nikki.jpeg" alt="Nissi">
+            <div class="team-overlay">
+              <div class="team-name-box">
+                <span class="team-name">MEET NISSI <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="team-details">
+            <button class="close-details-btn" onclick="closeTeamCard(event, this)">×</button>
+            <div class="details-content">
+              <span class="details-badge">Nissi</span>
+              <div class="details-role">Marketing & Brand Advocacy</div>
+              <p class="details-bio">
+                Nissi is an artist and creative that is passionate about self expression. She runs an accessories business called Sakura Glow Accessories that is the embodiment of self expression for jewelry lovers.<br><br>She is also unconfined and is open to all artistic related pursuits. Nissi is also the cosplay ambassador for Anime Cosplay.
+              </p>
             </div>
           </div>
         </div>
-        <div class="team-card">
-          <img src="./img/about-us/brian.jpg" alt="Brian">
-          <div class="team-overlay">
-            <div class="team-name-box">
-              <div class="team-name">MEET BRIAN</div>
+
+        <!-- Brian -->
+        <div class="team-card" onclick="toggleTeamCard(this)">
+          <div class="team-card-img-wrap">
+            <img src="./img/about-us/brian.jpg" alt="Brian">
+            <div class="team-overlay">
+              <div class="team-name-box">
+                <span class="team-name">MEET BRIAN <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="team-details">
+            <button class="close-details-btn" onclick="closeTeamCard(event, this)">×</button>
+            <div class="details-content">
+              <span class="details-badge">Brian</span>
+              <div class="details-role">Operations</div>
+              <p class="details-bio">
+                Brian runs an events brand called Vibes Pop Up that engages with brands in how they express themselves and bring different events to life. With over a decade's worth of experience, which he implements at all WAA events that have come to life thus far.
+              </p>
             </div>
           </div>
         </div>
-        <div class="team-card">
-          <img src="./img/about-us/romeo.jpg" alt="Romeo">
-          <div class="team-overlay">
-            <div class="team-name-box">
-              <div class="team-name">MEET ROMEO</div>
+
+        <!-- Romeo -->
+        <div class="team-card" onclick="toggleTeamCard(this)">
+          <div class="team-card-img-wrap">
+            <img src="./img/about-us/romeo.jpg" alt="Romeo">
+            <div class="team-overlay">
+              <div class="team-name-box">
+                <span class="team-name">MEET ROMEO <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="team-details">
+            <button class="close-details-btn" onclick="closeTeamCard(event, this)">×</button>
+            <div class="details-content">
+              <span class="details-badge">Romeo</span>
+              <div class="details-role">Artist Alley & Guest Interaction</div>
+              <p class="details-bio">
+                Romeo is a digital artist that is passionate about all things within the digital art realm. He is an active 3D & Concept Artist with a background in traditional art, especially painting. He is among the gifted hands behind the painting at the Kaizo Anime Store.
+              </p>
             </div>
           </div>
         </div>
-        <div class="team-card">
-          <img src="./img/about-us/jacob.jpg" alt="Jacob">
-          <div class="team-overlay">
-            <div class="team-name-box">
-              <div class="team-name">MEET JACOB</div>
+
+        <!-- Jacob -->
+        <div class="team-card" onclick="toggleTeamCard(this)">
+          <div class="team-card-img-wrap">
+            <img src="./img/about-us/jacob.jpg" alt="Jacob">
+            <div class="team-overlay">
+              <div class="team-name-box">
+                <span class="team-name">MEET JACOB <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="team-details">
+            <button class="close-details-btn" onclick="closeTeamCard(event, this)">×</button>
+            <div class="details-content">
+              <span class="details-badge">Jacob</span>
+              <div class="details-role">Assistant Operations Coordinator</div>
+              <p class="details-bio">
+                A civil engineer by professional training. Jacob contributes to the overall engineering of the what about experience as an assistant to our operations, Brian.
+              </p>
             </div>
           </div>
         </div>
@@ -3313,6 +3616,45 @@
           clickable: true,
         },
       });
+    }
+
+    // ── TEAM EXPANSION ──
+    function toggleTeamCard(cardElement) {
+      if (cardElement.classList.contains('expanded')) {
+        return;
+      }
+
+      const cards = document.querySelectorAll('.team-card');
+      cards.forEach(card => {
+        card.classList.remove('expanded', 'show-details');
+      });
+
+      cardElement.classList.add('expanded');
+
+      // Double requestAnimationFrame ensures class change is registered after layout updates,
+      // enabling hardware-accelerated transition of opacity and transform without reflow lag
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          cardElement.classList.add('show-details');
+        });
+      });
+
+      // Scroll the card into view smoothly
+      setTimeout(() => {
+        cardElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+
+    function closeTeamCard(event, btnElement) {
+      event.stopPropagation();
+      const card = btnElement.closest('.team-card');
+      if (card) {
+        card.classList.remove('show-details');
+        // Wait for CSS transition (350ms) to complete before collapsing structural layout
+        setTimeout(() => {
+          card.classList.remove('expanded');
+        }, 350);
+      }
     }
   </script>
 </body>
